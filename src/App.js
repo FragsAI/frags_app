@@ -40,10 +40,6 @@ function App() {
       <Faq/>
       <Prefooter/>
       <Footer/>
-
-        
-      
-      
     </>
   );
 }
