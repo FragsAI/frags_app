@@ -1,4 +1,6 @@
-
+body {
+  background-color: #0E131E;
+}
 .parent-container {
   display: flex;
   gap: 30px;
