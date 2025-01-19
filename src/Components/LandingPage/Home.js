@@ -9,49 +9,6 @@ const Home = () => {
                 <img src="../assets/Swirl.png"/>
             </div>
         </div>
-        {/* <div className="phones-container">
-            <div className="center-box">
-            <div className="phone-layer3">
-                    <div className="phone-borderleft3">
-                        <div className="phone-border">
-                            <img src="../assets/phone.png"/>
-                        </div>
-                    </div>
-                    <div className="phone-borderright3">
-                        <div className="phone-border">
-                            <img src="../assets/phone.png"/>
-                        </div>
-                    </div>
-                </div>
-                <div className="phone-layer2">
-                    <div className="phone-borderleft">
-                        <div className="phone-border">
-                            <img src="../assets/phone.png"/>
-                        </div>
-                    </div>
-                    <div className="phone-borderright">
-                        <div className="phone-border">
-                            <img src="../assets/phone.png"/>
-                        </div>
-                    </div>
-                </div>
-                <div className="phone-border">
-                    <img src="../assets/phone.png"/>
-                </div>
-            </div>
-        </div>
-
-        <div className="cubes">
-            <div className="move-cube1">
-                <img src="../assets/Rectangle 4.png"/>
-            </div>
-            <div className="move-cube2">
-                <img src="../assets/Rectangle 5.png"/>
-            </div>
-            <div className="move-cube3">
-                <img src="../assets/Rectangle 6.png"/>
-            </div>
-        </div> */}
 
         <div className="hometextcontainer">
             <div className="move-hometext">
@@ -70,6 +27,12 @@ const Home = () => {
                         <img className="uploadvideo" src="../assets/Group 306.png" alt="Upload Video" />
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div className="image-container">
+            <div className="move-image">
+                <img src="../assets/imageplaceholder.png"/>
             </div>
         </div>
 
