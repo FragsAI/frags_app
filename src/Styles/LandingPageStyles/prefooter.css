@@ -1,0 +1,112 @@
+/* Prefooter styles */
+.prefooter {
+    background-image: url('/public/assets/Group 39582.png');
+  background-size: 100% 100%; 
+  background-position: center; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height: 790px;
+  padding: 0 20px; 
+  text-align: center; 
+  color: white; 
+
+  }
+  
+  .prefooter .prefooter-content {
+    max-width: 800px; 
+    margin: 0 auto; 
+  }
+  
+  .prefooter h1 {
+    font-size: 5rem; 
+    color: #fff; 
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: 'Helvetica Neue', sans-serif;
+  }
+  
+  .prefooter p {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 1.2rem !important; 
+    color: #9BA2B2; 
+    margin-bottom: 30px;
+  }
+  
+  .prefooter .prefooter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 40px; 
+  }
+  
+  .btn {
+    padding: 12px 30px; 
+    font-size: 1rem; 
+    font-weight: bold; 
+    border-radius: 50px; 
+    text-decoration: none; 
+    text-align: center;
+    border-color: #DE2F2A !important;
+    transition: background-color 0.3s ease, transform 0.2s ease; 
+  }
+  
+  .btn:hover {
+    transform: translateY(-3px); 
+  }
+  
+  .btn-login {
+    border-radius: 50px !important;
+    font-family: 'Helvetica Neue', sans-serif !important;
+    background-color: transparent !important; 
+    color: white !important; 
+    border-color: #DE2F2A !important;
+    padding-left: 60px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-right: 60px !important;
+
+  }
+  
+  .btn-login:hover {
+    background: linear-gradient(to right, #F66918,#DE3129)  !important;
+    border-color: #DE2F2A !important;
+
+}
+  
+  .btn-signup {
+    border-radius: 50px !important;
+    font-family: 'Helvetica Neue', sans-serif !important;
+    background:linear-gradient(to right, #F66918,#DE3129)  !important;
+    color: #fff !important; 
+    border-color: #DE2F2A !important;
+    padding-left: 60px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-right: 60px !important;
+  }
+  
+  .btn-signup:hover {
+    background: transparent !important; 
+    border-color: #DE2F2A !important;
+
+  }
+  
+  /* Media Queries for Mobile */
+@media (max-width: 768px) {
+    .prefooter {
+      padding: 20px;
+    }
+  
+    .prefooter h1 {
+      font-size: 1.8rem;
+    }
+  
+    .prefooter p {
+      font-size: 0.9rem;
+    }
+  
+    .btn {
+      padding: 8px 16px;
+      font-size: 0.85rem;
+    }
+  }
