@@ -1,6 +1,6 @@
 import './App.css';
 import { useRef } from "react";
-import Home from "./Components/Home";
+import Home from "./Components/LandingPage/Home";
 
 function App() {
   const home = useRef(null);
