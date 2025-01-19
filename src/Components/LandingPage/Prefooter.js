@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Faq = () => {
+const Prefooter = () => {
   return (
     <div className="faq-section">
           <h3 id="faqText">FAQs</h3>
@@ -8,4 +8,4 @@ const Faq = () => {
   )
 }
 
-export default Faq;
+export default Prefooter;
