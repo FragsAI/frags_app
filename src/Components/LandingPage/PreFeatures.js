@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Getstarted = () => {
+const PreFeatures = () => {
   return (
     <div><p>Hello</p></div>
   )
 }
 
-export default Getstarted;
+export default PreFeatures;
