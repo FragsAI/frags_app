@@ -31,8 +31,6 @@ function App() {
   return (
     <>
       <Header/>
-
-
       <Home />
       <Credentials/>
       <Getstarted/>
