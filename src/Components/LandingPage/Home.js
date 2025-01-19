@@ -12,10 +12,8 @@ const Home = () => {
 
         <div className="hometextcontainer">
             <div className="move-hometext">
-                <h1 className="hometext-first">Create viral-ready clips </h1>
-                <h1 className="hometext-second">10x faster</h1>
+                <img className="hometextimg" src="./assets/homeText.png"/>
             </div>
-            <p id="hometext-three">Frags turns long videos into shorts, makes content easy, Saves you time, Grows you online</p>
         </div>
 
         <div className="bar">
