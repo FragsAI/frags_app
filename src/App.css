@@ -1,5 +1,5 @@
 body {
-  background-color: #0E131E;
+  background-color: #0E131E !important;
 }
 .parent-container {
   display: flex;

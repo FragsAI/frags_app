@@ -31,8 +31,6 @@ function App() {
   return (
     <>
       <Header/>
-
-
       <Home />
       <Credentials/>
       <Getstarted/>
@@ -42,10 +40,6 @@ function App() {
       <Faq/>
       <Prefooter/>
       <Footer/>
-
-        
-      
-      
     </>
   );
 }

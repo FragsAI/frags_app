@@ -1,0 +1,90 @@
+/* Header styles */
+.header {
+    margin-top: 15px;
+    z-index: 1;
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: transparent ;
+    
+  }
+  .logo-img {
+    height: 40px; /* Adjust the size as needed */
+    width: auto;
+    padding-left: 20px;
+  }
+  
+  /* Navbar brand (logo) */
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .navbar-brand:hover {
+    color: #007bff;
+  }
+  
+  /* Center navigation links */
+  .navbar-nav .nav-link {
+    color: #fff;
+    font-family: 'Helvetica Neue', sans-serif;
+    transition: color 0.3s;
+    font-weight: bold;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .product{
+    margin-right: 40px !important;
+  }
+  
+  /* Buttons */
+  
+  .btn-primary:hover {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .btn-outline-primary {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .btn-outline-primary:hover {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .login{
+    color: #fff !important;
+    border: none !important;
+    font-size: 1.0rem !important;
+    font-weight: bold !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;   
+    margin-top: 6px;    
+  }
+  .signup {
+    margin-top: 7px !important;
+    font-size: 1.0rem !important;
+    font-weight: bold !important;
+    font-weight: 700;
+    padding-left: 25px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-right: 25px !important;
+    color: black !important;
+    background-color: #fff !important;
+    border-radius: 50px !important;
+    margin-right: 20px !important;
+  }
+
+  .navbar-toggler{
+    border: none;
+    background: linear-gradient(to right, #F66918,#DE3129)  !important;
+  }
