@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from "react";
 import "../../Styles/LandingPageStyles/credentials.css";
 
 const Credentials = () => {
@@ -14,26 +14,65 @@ const Credentials = () => {
     { logoSrc: "./assets/logo8.png", representativeSrc: "./assets/representative8.png", name: "Name 8", followers: "10,500 followers" },
   ];
 
+  const rowRef = useRef(null);
+
+  useEffect(() => {
+    const row = rowRef.current;
+    row.innerHTML += row.innerHTML;
+
+    let scrollAmount = 0;
+    const scrollSpeed = 2; 
+
+    const scroll = () => {
+      scrollAmount += scrollSpeed;
+      row.style.transform = `translateX(-${scrollAmount}px)`;
+
+      if (scrollAmount >= row.offsetWidth / 2) {
+        scrollAmount = 0;
+      }
+
+      requestAnimationFrame(scroll);
+    };
+
+    scroll(); 
+  }, []);
 
   return (
     <>
-    
-    <div className="credentials-text-container">
-      <div className="move-credentials-text">
-        <img src="./assets/credentialsText.png" />
+    <div className="container">
+      <div className="credentials-text-container">
+        <div className="move-credentials-text">
+          <img src="./assets/credentialsText.png" />
+        </div>
       </div>
-    </div>
 
-    <div className="logo-container">
-      <div className="logo-row">
-        {logos.map((item, index) => (
-          <div key={index} className="logo-item">
-            <img src={item.logoSrc} alt={`Logo ${index + 1}`} className="logo-img" />
-            <img src={item.representativeSrc} alt={`Representative ${index + 1}`} className="representative-img" />
-            <p className="representative-name">{item.name}</p>
-            <p className="representative-followers">{item.followers}</p>
-          </div>
-        ))}
+      <div className="logo-container">
+        <div className="logo-row" ref={rowRef}>
+          {logos.map((item, index) => (
+            <div key={index} className="logo-item">
+              <img src={item.logoSrc} alt={`Logo ${index + 1}`} className="logo-img" />
+              <img
+                src={item.representativeSrc}
+                alt={`Representative ${index + 1}`}
+                className="representative-img"
+              />
+              <p className="representative-name">{item.name}</p>
+              <p className="representative-followers">{item.followers}</p>
+            </div>
+          ))}
+          {logos.map((item, index) => (
+            <div key={`duplicate-${index}`} className="logo-item">
+              <img src={item.logoSrc} alt={`Logo ${index + 1}`} className="logo-img" />
+              <img
+                src={item.representativeSrc}
+                alt={`Representative ${index + 1}`}
+                className="representative-img"
+              />
+              <p className="representative-name">{item.name}</p>
+              <p className="representative-followers">{item.followers}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
     
