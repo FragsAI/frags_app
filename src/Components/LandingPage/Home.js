@@ -1,58 +1,42 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { Component } from "react";
 import "../../Styles/home.css"
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css"
 
 const Home = () => {
-    const containerRef = useRef(null);
-    const [currentImageIndex, setCurrentImageIndex] = useState(1); // Start at index 1 (first actual image)
-    const images = Array.from({ length: 3 });
-  
-    useEffect(() => {
-      const container = containerRef.current;
-      const moveImages = container.querySelector(".move-image");
-      const imageWidth = 700 + 100; 
-      const offset = (container.offsetWidth - imageWidth) / 2; 
-  
- 
-      moveImages.style.transition = "transform 0.5s ease";
-      moveImages.style.transform = `translateX(-${
-        currentImageIndex * imageWidth - offset
-      }px)`;
-  
-
-      const handleTransitionEnd = () => {
-        moveImages.style.transition = "none";
-        if (currentImageIndex === 0) {
-          setCurrentImageIndex(images.length); 
-        } else if (currentImageIndex === images.length + 1) {
-          setCurrentImageIndex(1); 
-        }
-      };
-  
-      moveImages.addEventListener("transitionend", handleTransitionEnd);
-  
-      return () => {
-        moveImages.removeEventListener("transitionend", handleTransitionEnd);
-      };
-    }, [currentImageIndex, images.length]);
-  
-    const handlePrevClick = () => {
-      setCurrentImageIndex((prevIndex) => prevIndex - 1);
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        centerMode: true,
+        centerPadding: "20px",
+        customPaging: () => <div className="custom-dot"></div>, 
+        appendDots: (dots) => (
+          <div style={{ bottom: "-50px" }}>
+            <ul style={{ margin: "0px", padding: "0px" }}>{dots}</ul>
+          </div>
+        ),
+        responsive: [
+          {
+            breakpoint: 1200,
+            settings: {
+              centerPadding: "100px", 
+            },
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              centerPadding: "50px", 
+            },
+          },
+        ],
     };
-  
-    const handleNextClick = () => {
-        setCurrentImageIndex((prevIndex) =>
-          prevIndex === images.length + 1 ? 1 : prevIndex + 1
-        );
-    };
-  
-    const handleDotClick = (index) => {
-    const targetIndex = index + 1; 
-        if (targetIndex > currentImageIndex) {
-            handleNextClick();
-        } else if (targetIndex < currentImageIndex) {
-            handlePrevClick();
-        }
-    };
+      
+    
 
   return (
     <>
@@ -128,44 +112,23 @@ const Home = () => {
             </div>
         </div>
 
-        <div className="carousel-container">
-        <div className="image-container" ref={containerRef}>
-            <div className="move-image">
-               
-                <img
-                key={`clone-start`}
-                src={`../assets/imageplaceholder${images.length}.png`}
-                alt={`Placeholder ${images.length}`}
-                />
-                {images.map((_, index) => (
-                <img
-                    key={`image-${index}`}
-                    src={`../assets/imageplaceholder${index + 1}.png`}
-                    alt={`Placeholder ${index + 1}`}
-                    className={currentImageIndex === index + 1 ? "highlighted" : ""}
-                />
-                ))}
-         
-                <img
-                key={`clone-end`}
-                src={`../assets/imageplaceholder1.png`}
-                alt="Placeholder 1"
-                />
-            </div>
-        </div>
-    
-      <div className="indicator-bar">
-        {images.map((_, index) => (
-        <span
-        key={index}
-        onClick={() => handleDotClick(index)}
-        className={`indicator-dot ${
-            currentImageIndex === index + 1 ? "active" : ""
-        }`}
-        ></span>
-        ))}
+        <div className="slider-wrapper">
+            <Slider {...settings}>
+                <div>
+                    <img src="/assets/imageplaceholder1.png" />
+                </div>
+                <div>
+                    <img src="/assets/imageplaceholder2.png" />
+                </div>
+                <div>
+                    <img src="/assets/imageplaceholder3.png" />
+                </div>
+                <div>
+                    <img src="/assets/imageplaceholder4.png" />
+                </div>
+            </Slider>
       </div>
-    </div>
+
     </>
   )
 }
