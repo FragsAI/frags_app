@@ -1,4 +1,14 @@
-/* Common styles for both rows */
+.features-content {
+    margin-top: 330px;
+}
+
+@media screen and (max-width: 768px) {
+    .features-content {
+        margin-top: 150px;
+    }
+}
+
+
 .move-row-one,
 .move-row-two,
 .move-row-three,
@@ -57,6 +67,7 @@
     width: clamp(200px, 20vw, 300px);
 }
 
+
 #iphone4, #iphone5, #iphone6 {
     position: absolute;
     transform-origin: bottom right;
@@ -103,12 +114,12 @@
 
 #iphone2 {
     z-index: 2;
-    transform: translateX(-10px) rotate(-10deg);
+    transform: translateX(-30px) rotate(-10deg);
 }
 
 #iphone3 {
     z-index: 1;
-    transform: translateX(10px) rotate(-22deg);
+    transform: translateX(-30px) rotate(-22deg);
 }
 
 #iphone4 {
@@ -118,12 +129,12 @@
 
 #iphone5 {
     z-index: 2;
-    transform: translateX(10px) rotate(10deg);
+    transform: translateX(30px) rotate(10deg);
 }
 
 #iphone6 {
     z-index: 1;
-    transform: translateX(-10px) rotate(22deg);
+    transform: translateX(30px) rotate(22deg);
 }
 
 

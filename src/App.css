@@ -1,6 +1,8 @@
-body {
+html, body {
+  overflow-x: hidden;
   background-color: #0E131E !important;
 }
+
 .parent-container {
   display: flex;
   gap: 30px;
