@@ -438,7 +438,13 @@
     box-sizing: border-box;
 }
 
-.move-features-content img {
+.move-features-content {
+    height: auto;
+    object-fit: contain; 
+    margin: 0 auto; 
+}
+
+.colImg {
     width: 100%; 
     max-width: 800px; 
     height: auto;
@@ -446,3 +452,10 @@
     margin: 0 auto; 
 }
 
+.colTexts {
+    width: 100%; 
+    max-width: 1200px; 
+    height: auto;
+    object-fit: contain; 
+    margin: 0 auto; 
+}

@@ -54,14 +54,14 @@ const Features = () => {
 
     <div className="features-content">
         <div className="move-features-content">
-          <img src="./assets/ColTextOne.png" />
-          <img src="./assets/ColFrameOne.png" />
-          <img src="./assets/ColTextTwo.png" />
-          <img src="./assets/ColFrameTwo.png" />
-          <img src="./assets/ColTextThree.png" />
-          <img src="./assets/ColFrameThree.png" />
-          <img src="./assets/ColTextFour.png" />
-          <img src="./assets/ColFrameFour.png" />
+          <img className="colTexts" src="./assets/ColTextOne.png" />
+          <img className="colImg" src="./assets/ColFrameOne.png" />
+          <img className="colTexts" src="./assets/ColTextTwo.png" />
+          <img className="colImg" src="./assets/ColFrameTwo.png" />
+          <img className="colTexts" src="./assets/ColTextThree.png" />
+          <img className="colImg" src="./assets/ColFrameThree.png" />
+          <img className="colTexts" src="./assets/ColTextFour.png" />
+          <img className="colImg" src="./assets/ColFrameFour.png" />
         </div>
     </div>
     
