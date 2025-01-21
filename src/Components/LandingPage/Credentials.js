@@ -20,6 +20,7 @@ const Credentials = () => {
     const row = rowRef.current;
     row.innerHTML += row.innerHTML;
 
+
     let scrollAmount = 0;
     const scrollSpeed = 2; 
 
@@ -27,6 +28,7 @@ const Credentials = () => {
       scrollAmount += scrollSpeed;
       row.style.transform = `translateX(-${scrollAmount}px)`;
 
+      
       if (scrollAmount >= row.offsetWidth / 2) {
         scrollAmount = 0;
       }
@@ -34,8 +36,10 @@ const Credentials = () => {
       requestAnimationFrame(scroll);
     };
 
-    scroll(); 
+    scroll();
   }, []);
+
+
 
   return (
     <>
