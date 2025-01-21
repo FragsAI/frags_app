@@ -13,7 +13,7 @@ const Home = () => {
         slidesToScroll: 1,
         arrows: false,
         centerMode: true,
-        centerPadding: "20px",
+        centerPadding: "400px",
         customPaging: () => <div className="custom-dot"></div>, 
         appendDots: (dots) => (
           <div style={{ bottom: "-50px" }}>

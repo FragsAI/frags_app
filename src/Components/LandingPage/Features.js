@@ -5,7 +5,7 @@ const Features = () => {
   return (
     <>
     
-    <div className="features-content">
+    {/* <div className="features-content">
       <div className="move-row-one">
         <div className="rowOneImg">
           <img id="iphone1" src="./assets/iPhone.png"/>
@@ -50,6 +50,19 @@ const Features = () => {
           <img id="iphone6" src="./assets/iPhone.png"/>
         </div>
       </div>
+    </div> */}
+
+    <div className="features-content">
+        <div className="move-features-content">
+          <img src="./assets/ColTextOne.png" />
+          <img src="./assets/ColFrameOne.png" />
+          <img src="./assets/ColTextTwo.png" />
+          <img src="./assets/ColFrameTwo.png" />
+          <img src="./assets/ColTextThree.png" />
+          <img src="./assets/ColFrameThree.png" />
+          <img src="./assets/ColTextFour.png" />
+          <img src="./assets/ColFrameFour.png" />
+        </div>
     </div>
     
     
