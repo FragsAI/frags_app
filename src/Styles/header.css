@@ -32,7 +32,7 @@
   .navbar-nav .nav-link:hover {
     font-family: 'Helvetica Neue', sans-serif;
     font-weight: bold !important;
-    color: #DE3129 !important;
+    color: #52FFF3 !important;
   }
   .product{
     margin-right: 40px !important;
@@ -44,7 +44,7 @@
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 1.5rem !important;
     font-weight: bold;
-    color: #DE3129 !important;
+    color: #52FFF3 !important;
   }
   
   .btn-outline-primary {
@@ -89,7 +89,7 @@
 
   .login:hover{
     background-color: transparent !important;
-    color: #DE3129 !important;
+    color: #52FFF3 !important;
  
   }
 
