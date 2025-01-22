@@ -1,13 +1,12 @@
 import React from 'react'
 import Header from "./Header"
-import "./../Styles/pricing.css"
+import "./../Styles/product.css"
 
 const Pricing = () => {
   return (
     <>
-    <Header />
     
-    <div className="pricing-content">
+    <div className="product-content">
         <div className='move-featuresText'>
             <img src="./assets/featuresText.png" />
         </div>
