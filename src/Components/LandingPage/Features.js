@@ -5,7 +5,7 @@ const Features = () => {
   return (
     <>
     
-    <div className="features-content">
+    {/* <div className="features-content">
       <div className="move-row-one">
         <div className="rowOneImg">
           <img id="iphone1" src="./assets/iPhone.png"/>
@@ -49,6 +49,28 @@ const Features = () => {
           <img id="iphone5" src="./assets/iPhone.png"/>
           <img id="iphone6" src="./assets/iPhone.png"/>
         </div>
+      </div>
+    </div> */}
+
+    <div className="features-content">
+        <div className="move-features-content">
+          <img className="colTexts" src="./assets/ColTextOne.png" />
+          <img className="colImg" src="./assets/ColFrameOne.png" />
+          <img className="colTexts" src="./assets/ColTextTwo.png" />
+          <img className="colImg" src="./assets/ColFrameTwo.png" />
+          <img className="colTexts" src="./assets/ColTextThree.png" />
+          <img className="colImg" src="./assets/ColFrameThree.png" />
+          <img className="colTexts" src="./assets/ColTextFour.png" />
+          <img className="colImg" src="./assets/ColFrameFour.png" />
+          <img className="colTexts" src="./assets/ColTextFive.png" />
+          <img className="colImg" src="./assets/ColFrameFive.png" />
+        </div>
+    </div>
+
+    <div className="buttons-content">
+      <div>
+          <img src="./assets/morePricePlanButton.png" />
+          <img src="./assets/startFragButton.png" />
       </div>
     </div>
     
