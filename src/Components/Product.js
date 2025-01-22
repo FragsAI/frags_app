@@ -2,7 +2,19 @@ import React from 'react'
 
 const Product = () => {
   return (
-    <div>Product</div>
+    <>
+    
+    <div className="pricing-content">
+        <div className='move-featuresText'>
+            <img src="./assets/featuresText.png" />
+        </div>
+        <div className="features-featuresImg">
+            <img src="./assets/featuresColOne.png" />
+            <img src="./assets/featuresColOne.png" />
+        </div>
+    </div>
+
+    </>
   )
 }
 
