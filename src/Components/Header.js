@@ -18,7 +18,7 @@ function Header() {
     <header className="header navbar navbar-expand-lg">
       <div className="container-fluid">
         {/* Logo */}
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
             <img src="../assets/Frame 50126812.png" alt="Frags Logo" className="logo-img" />
         </a>
 
@@ -44,7 +44,7 @@ function Header() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#pricing" onClick={closeNavbar}>
+              <a className="nav-link" href="/pricing" onClick={closeNavbar}>
                 Pricing
               </a>
             </li>
