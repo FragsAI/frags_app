@@ -22,11 +22,11 @@ const Credentials = () => {
 
 
     let scrollAmount = 0;
-    const scrollSpeed = 2; 
+    const scrollSpeed = 0.7; 
 
     const scroll = () => {
       scrollAmount += scrollSpeed;
-      row.style.transform = `translateX(-${scrollAmount}px)`;
+      row.style.transform = `translateX(${scrollAmount}px)`;
 
       
       if (scrollAmount >= row.offsetWidth / 2) {

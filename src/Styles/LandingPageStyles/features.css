@@ -459,3 +459,39 @@
     object-fit: contain; 
     margin: 0 auto; 
 }
+
+.buttons-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto 100px auto;
+    text-align: center;
+    flex-wrap: wrap;
+    max-width: 100%;
+    width: calc(100% - 40px);
+    box-sizing: border-box;
+}
+
+.buttons-content div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 100%;
+}
+
+.buttons-content img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .buttons-content img {
+        width: 150px;
+        height: auto;
+    }
+}

@@ -62,7 +62,16 @@ const Features = () => {
           <img className="colImg" src="./assets/ColFrameThree.png" />
           <img className="colTexts" src="./assets/ColTextFour.png" />
           <img className="colImg" src="./assets/ColFrameFour.png" />
+          <img className="colTexts" src="./assets/ColTextFive.png" />
+          <img className="colImg" src="./assets/ColFrameFive.png" />
         </div>
+    </div>
+
+    <div className="buttons-content">
+      <div>
+          <img src="./assets/morePricePlanButton.png" />
+          <img src="./assets/startFragButton.png" />
+      </div>
     </div>
     
     
