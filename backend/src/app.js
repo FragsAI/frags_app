@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import middleware from './utils/middleware';
+import * as middleware from './utils/middleware';
 
 const app = express();
 

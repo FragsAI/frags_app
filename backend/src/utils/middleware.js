@@ -33,7 +33,4 @@ const errorHandler = () => {
     return response.status(500).send({ error: "internal server error" })
 }
 
-module.exports = {
-    requestLogger,
-    unknownEndpoint
-}
+export { requestLogger, unknownEndpoint, errorHandler }

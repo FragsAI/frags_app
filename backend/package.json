@@ -5,21 +5,21 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cross-env NODE_ENV=production node src/index",
-    "start:test": "cross-env NODE_ENV=test node src/index",
-    "dev": "cross-env NODE_ENV=development nodemon src/index"
+    "start": "cross-env NODE_ENV=production node --import=specifier-resolution-node/register src/index",
+    "start:test": "cross-env NODE_ENV=test node --import=specifier-resolution-node/register src/index",
+    "dev": "cross-env NODE_ENV=development nodemon --import=specifier-resolution-node/register src/index"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "@supabase/supabase-js": "^2.48.0",
-    "chalk": "^4.1.2",
+    "chalk": "^5.4.1",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
-    "dot-env": "^0.0.1",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "response-time": "^2.3.3"
+    "response-time": "^2.3.3",
+    "specifier-resolution-node": "^1.1.4"
   }
 }
