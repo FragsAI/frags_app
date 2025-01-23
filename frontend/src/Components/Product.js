@@ -1,11 +1,13 @@
 import React from 'react'
 import "./../Styles/product.css"
-
+import Header from "./Header"
+import Footer from "./Footer"
 
 const Product = () => {
   return (
     <>
-    
+    <div>
+      <Header/>
     <div className="pricing-content">
         <div className='move-featuresText'>
             <img src="./assets/featuresText.png" />
@@ -14,6 +16,8 @@ const Product = () => {
             <img src="./assets/featuresColOne.png" />
             <img src="./assets/featuresColOne.png" />
         </div>
+    </div>
+    <Footer/>
     </div>
 
     </>
