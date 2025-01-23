@@ -14,7 +14,7 @@ const Product = () => {
         </div>
         <div className="features-featuresImg">
             <img src="./assets/featuresColOne.png" />
-            <img src="./assets/featuresColOne.png" />
+            <img src="./assets/featuresColTwo.png" />
         </div>
     </div>
     <Footer/>
