@@ -1,8 +1,8 @@
-// Temporary
 const app = require("./app")
-const PORT = process.env.PORT || 3000
+const logger = require("./utils/logger")
+const config = require("./utils/config")
 
-app.listen(PORT, () => {
-    console.log(`Server listening on Port ${PORT}`)
+app.listen(config.PORT, () => {
+    logger.info(`Server running on port ${config.PORT}\n`)
 })
 
