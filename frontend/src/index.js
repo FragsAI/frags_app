@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import Product from './Components/Product';
-import Pricing from './Components/Pricing';
+import Pricing from './Components/PricingPage/Pricing';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
