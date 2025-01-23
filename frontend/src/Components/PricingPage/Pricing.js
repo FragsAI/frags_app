@@ -3,6 +3,7 @@ import Header from "../Header";
 import { useLocation, Link } from 'react-router-dom'; // Import Link for navigation
 import Footer from "../Footer";
 import "../../Styles/PricingPageStyles/Pricing.css";
+import PricingFaq from "./PricingFaq"
 
 const Pricing = () => {
   const location = useLocation(); // Get the current location
@@ -35,7 +36,7 @@ const Pricing = () => {
             {/* Card 1 */}
             <div className="pricing-card">
               <h2 className="graylight">TIER 1</h2>
-              <h1>$9.99/mo</h1>
+              <h1>$9.99/monthly</h1>
               <p><span className="greenlight">Creator</span></p>
               <p className="graydark">Beginner</p>
               <hr />
@@ -86,7 +87,7 @@ const Pricing = () => {
               <div className="popular-wrapper">
                 <div className="mostpopular">
                   <h2 className="graylight">TIER 2</h2>
-                  <h1>$39.99/mo</h1>
+                  <h1>$39.99/monthly</h1>
                   <p><span className="greenlight">Clipper</span></p>
                   <p className="graydark">Intermediate</p>
                   <hr />
@@ -140,7 +141,7 @@ const Pricing = () => {
             {/* Card 3 */}
             <div className="pricing-card">
               <h2 className="graylight">TIER 3</h2>
-              <h1>$69.99/mo</h1>
+              <h1>$69.99/monthly</h1>
               <p><span className="greenlight">Fragger</span></p>
               <p className="graydark">Advanced</p>
               <hr />
@@ -186,6 +187,7 @@ const Pricing = () => {
             </div>
           </div>
         </div>
+        <PricingFaq/>
         <Footer />
       </div>
     </>

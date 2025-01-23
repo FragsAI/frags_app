@@ -52,14 +52,14 @@ function Header() {
           <div className="d-flex">
             {/* Login and Sign Up */}
             <a
-              href="#login"
+              href="/login"
               className="login btn btn-outline-primary me-2"
               onClick={closeNavbar}
             >
               Login
             </a>
             <a
-              href="#signup"
+              href="/signup"
               className="signup btn "
               onClick={closeNavbar}
             >
