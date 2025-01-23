@@ -1,7 +1,7 @@
 
-const responseTime = require("response-time")
-const logger = require("./logger")
-const chalk = require('chalk');
+import responseTime from "response-time"
+import logger from "./logger"
+import chalk from "chalk"
 
 function getStatusColor(statusCode) {
   if (statusCode >= 200 && statusCode < 300) {
