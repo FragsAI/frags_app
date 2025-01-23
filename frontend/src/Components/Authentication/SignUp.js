@@ -1,5 +1,8 @@
 import React from 'react';
 import { ClerkProvider, SignUp } from '@clerk/clerk-react';
+import "../../Styles/AuthenticationStyles/SignUpStyles.css";
+import Header from "../Header";
+import Footer from "../Footer"
 
 const PUBLISHABLE_KEY = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
 
@@ -9,8 +12,12 @@ if (!PUBLISHABLE_KEY) {
 
 export default function SignUpPage() {
   return (
-   
-      <SignUp />
-
+    <>
+      <Header />
+      <div className="move-signUp">
+        < SignUp />
+      </div>
+      <Footer />
+    </>
   );
 }
