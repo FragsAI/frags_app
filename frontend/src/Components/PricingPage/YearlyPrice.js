@@ -4,6 +4,8 @@ import { useLocation, Link } from 'react-router-dom'; // Import Link for navigat
 import Footer from "../Footer";
 import "../../Styles/PricingPageStyles/Pricing.css";
 import "../../Styles/PricingPageStyles/YearlyPrice.css";
+import PricingFaq from "./PricingFaq"
+
 
 const YearlyPrice = () => {
   const location = useLocation(); // Get the current location
@@ -187,6 +189,7 @@ const YearlyPrice = () => {
             </div>
           </div>
         </div>
+        <PricingFaq/>
         <Footer />
       </div>
     </>
