@@ -1,5 +1,23 @@
 {
-  "dependencies": {
-    "@clerk/clerk-react": "^5.22.5"
-  }
+  "name": "frags_app",
+  "version": "1.0.0",
+  "description": "Full Stack application for LLM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:server": "cd backend && npm start",
+    "dev:server": "cd backend && npm run dev", 
+    "start:client": "cd frontend && npm start",
+    "dev": "concurrently \"cd frontend && npm start\" \"cd backend && npm run dev\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FragsAI/frags_app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FragsAI/frags_app/issues"
+  },
+  "homepage": "https://github.com/FragsAI/frags_app#readme"
 }
