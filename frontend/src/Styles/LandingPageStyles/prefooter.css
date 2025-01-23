@@ -1,6 +1,6 @@
 /* Prefooter styles */
 .prefooter {
-    background-image: url('/public/assets/Group 39582.png');
+    background-image: url('/public/assets/5f7cba0d44a746f394afdd86_topo-lines.svg (1).png');
   background-size: 100% 100%; 
   background-position: center; 
   display: flex; 
@@ -10,12 +10,14 @@
   padding: 0 20px; 
   text-align: center; 
   color: white; 
+  margin-bottom: 70px;
 
   }
   
   .prefooter .prefooter-content {
     max-width: 800px; 
     margin: 0 auto; 
+    margin-bottom: 50px;
   }
   
   .prefooter h1 {
@@ -32,14 +34,34 @@
     color: #9BA2B2; 
     margin-bottom: 30px;
   }
+  .orangegradiant{
+    font-family: 'Helvetica Neue', sans-serif;
+    background: linear-gradient(to left, #F66918, #DE2F2A); 
+    -webkit-background-clip: text;
+    color: transparent;
+}
+.gray2gradiant{
+    font-family: 'Helvetica Neue', sans-serif;
+    background: linear-gradient(to right, #FFFFFF, #A2A4A8); 
+    -webkit-background-clip: text;
+    color: transparent;
+}
+.gray1gradiant{
+  font-family: 'Helvetica Neue', sans-serif;
+  background: linear-gradient(to left, #FFFFFF, #A2A4A8); 
+  -webkit-background-clip: text;
+  color: transparent;
+}
   
   .prefooter .prefooter-buttons {
+    padding-top: 50px;
     display: flex;
     justify-content: center;
     gap: 40px; 
   }
   
   .btn {
+
     padding: 12px 30px; 
     font-size: 1rem; 
     font-weight: bold; 

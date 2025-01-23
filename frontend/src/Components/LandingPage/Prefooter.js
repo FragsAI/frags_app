@@ -5,7 +5,7 @@ const Prefooter = () => {
   return (
     <section className="prefooter">
       <div className="prefooter-content">
-        <h1>Ready to Get Started</h1>
+        <h1><span className="gray1gradiant">120 minutes of</span><span className="orangegradiant"> free clipping</span><span className='gray2gradiant'> every month</span></h1>
         <p>Create an account or talk to one of our experts.</p>
         <div className="prefooter-buttons">
           <a href="#login" className="btn btn-login">LOGIN</a>

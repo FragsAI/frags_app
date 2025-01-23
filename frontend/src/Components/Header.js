@@ -39,7 +39,7 @@ function Header() {
         >
           <ul className="navbar-nav mx-auto">
             <li className="nav-item">
-              <a className="product nav-link" href="#product" onClick={closeNavbar}>
+              <a className="product nav-link" href="/product" onClick={closeNavbar}>
                 Product
               </a>
             </li>

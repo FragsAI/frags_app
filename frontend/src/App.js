@@ -5,7 +5,6 @@ import Features from './Components/LandingPage/Features';
 import Prefooter from './Components/LandingPage/Prefooter';
 import Header from './Components/Header';
 import Testimonials from './Components/LandingPage/Testimonials';
-import PreFeatures from './Components/LandingPage/PreFeatures';
 import Getstarted from './Components/LandingPage/Getstarted';
 import Faq from './Components/LandingPage/Faq';
 import Footer from './Components/Footer';
@@ -34,7 +33,6 @@ function App() {
       <Home />
       <Credentials/>
       <Getstarted/>
-      <PreFeatures/>
       <Features/>
       <Testimonials/>
       <Faq/>
