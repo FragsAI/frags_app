@@ -8,7 +8,7 @@ const Product = () => {
     <>
     <div>
       <Header/>
-    <div className="pricing-content">
+    <div className="product-content">
         <div className='move-featuresText'>
             <img src="./assets/featuresText.png" />
         </div>
