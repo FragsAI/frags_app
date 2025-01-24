@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:server": "cd backend && npm start",
-    "dev:server": "cd backend && npm run dev", 
+    "dev:server": "cd backend && npm run dev",
     "start:client": "cd frontend && npm start",
     "dev": "concurrently \"cd frontend && npm start\" \"cd backend && npm run dev\"",
     "start": "concurrently \"cd frontend && npm start\" \"cd backend && npm run start\"",
@@ -21,5 +21,12 @@
   "bugs": {
     "url": "https://github.com/FragsAI/frags_app/issues"
   },
-  "homepage": "https://github.com/FragsAI/frags_app#readme"
+  "homepage": "https://github.com/FragsAI/frags_app#readme",
+  "dependencies": {
+    "@stripe/react-stripe-js": "^3.1.1",
+    "@stripe/stripe-js": "^5.5.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0"
+  }
 }
