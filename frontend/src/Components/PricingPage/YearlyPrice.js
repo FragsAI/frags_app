@@ -5,6 +5,8 @@ import Footer from "../Footer";
 import "../../Styles/PricingPageStyles/Pricing.css";
 import "../../Styles/PricingPageStyles/YearlyPrice.css";
 import PricingFaq from "./PricingFaq"
+import FreePackage from './FreePackage';
+
 
 
 const YearlyPrice = () => {
@@ -189,6 +191,7 @@ const YearlyPrice = () => {
             </div>
           </div>
         </div>
+        <FreePackage/>
         <PricingFaq/>
         <Footer />
       </div>
