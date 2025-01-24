@@ -30,8 +30,10 @@ export default function Subscription() {
     }
 
   return (
+    clientSecret && (
     <Elements stripe={stripePromise} options={options}>
       <CheckoutForm />
     </Elements>
+    )
   );
 }
