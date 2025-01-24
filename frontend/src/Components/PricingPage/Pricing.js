@@ -3,6 +3,7 @@ import Header from "../Header";
 import { useLocation, Link } from 'react-router-dom'; // Import Link for navigation
 import Footer from "../Footer";
 import "../../Styles/PricingPageStyles/Pricing.css";
+import FreePackage from './FreePackage';
 import PricingFaq from "./PricingFaq"
 
 const Pricing = () => {
@@ -187,6 +188,7 @@ const Pricing = () => {
             </div>
           </div>
         </div>
+        <FreePackage/>
         <PricingFaq/>
         <Footer />
       </div>
