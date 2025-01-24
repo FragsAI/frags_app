@@ -8,6 +8,7 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 export default function Subscription() {
     const [clientSecret, setClientSecret] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
       fetch("http://localhost:3000/api/subscription/test-payment-intent", {
         method: "POST",
@@ -20,6 +21,7 @@ export default function Subscription() {
       .then((data) => {
         console.log(data)
         setClientSecret(data.client_secret)
+        setIsLoading(false)
       })
     }, []);
     const appearance = {
@@ -29,11 +31,15 @@ export default function Subscription() {
       clientSecret: clientSecret
     }
 
-  return (
-    clientSecret && (
-    <Elements stripe={stripePromise} options={options}>
-      <CheckoutForm />
-    </Elements>
-    )
-  );
+    if (isLoading) {
+      return <div>Loading...</div>
+    }
+
+    return (
+      clientSecret && (
+        <Elements stripe={stripePromise} options={options}>
+          <CheckoutForm />
+        </Elements>
+        )
+    );
 }
