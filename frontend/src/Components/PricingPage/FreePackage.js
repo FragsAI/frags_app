@@ -7,45 +7,62 @@ export default function FreePackage() {
     <div className="freePackage">
     <div className="free-package-container">
       {/* First Div */}
-      <div className="free-package-div">
+      <div className="free-package-div1">
       <h2 className="graylight">FREE</h2>
               <h1><span className="white">$0</span><span className="graygray">/mo</span></h1>
-              <p><span className="greenlight">Creator</span></p>
-              <p className="graydark">Beginner</p>
+              <p><span className="greenlight">Try it Out</span></p>
+              <p className="graydark">Free Forever</p>
+                <button className="btn btn-login grayborder">CREATE ACCOUNT</button>
+             
       </div>
-      <div className="line">
+      <div className="line">   
       <hr className="vertical-line" />
       </div>
 
       {/* Second Div */}
       <div className="free-package-div">
-        <ul>
-          <li>
-            <p>List 1, Item 1</p>
-            <p>List 1, Item 2</p>
-          </li>
-          <li>
-            <p>List 2, Item 1</p>
-            <p>List 2, Item 2</p>
-          </li>
-          <li>
-            <p>List 3, Item 1</p>
-            <p>List 3, Item 2</p>
-          </li>
-        </ul>
+        
+                <div className="feature-item1">
+                  <img src="../assets/Vector.png" alt="tick" className="tick-icon" />
+                  <p className="tickp">Virality Ranking</p>
+                </div>
+                <div className="feature-item1">
+                  <img src="../assets/Vector.png" alt="tick" className="tick-icon" />
+                  <p className="tickp">Stream Clipping</p>
+                </div>
+            
       </div>
 
       {/* Third Div */}
       <div className="free-package-div">
-        <ul>
-          <li><p>List 4, Item 1</p></li>
-          <li><p>List 4, Item 2</p></li>
-          <li><p>List 4, Item 3</p></li>
-          <li><p>List 4, Item 4</p></li>
-          <li><p>List 4, Item 5</p></li>
-          <li><p>List 4, Item 6</p></li>
-          <li><p>List 4, Item 7</p></li>
-        </ul>
+      <div className="feature-item1">
+                  <img src="../assets/Vector (2).png" alt="tick" className="tick-icon" />
+                  <p className="tickp">No Aspect Ratio</p>
+                </div>
+                <div className="feature-item1">
+                  <img src="../assets/Vector (2).png" alt="tick" className="tick-icon" />
+                  <p className="tickp">No AI Subtitles</p>
+                </div>
+                <div className="feature-item1">
+                  <img src="../assets/Vector (2).png" alt="tick" className="tick-icon" />
+                  <p className="tickp">No Video Assets</p>
+                </div>
+                <div className="feature-item1">
+                  <img src="../assets/Vector (2).png" alt="tick" className="tick-icon" />
+                  <p className="tickp">No AI Voiceover</p>
+                </div>
+                <div className="feature-item1">
+                  <img src="../assets/Vector (2).png" alt="tick" className="tick-icon" />
+                  <p className="tickp">No Script Generator</p>
+                </div>
+                <div className="feature-item1">
+                  <img src="../assets/Vector (2).png" alt="tick" className="tick-icon" />
+                  <p className="tickp">No In-built Editor</p>
+                </div>
+                <div className="feature-item1">
+                  <img src="../assets/Vector (2).png" alt="tick" className="tick-icon" />
+                  <p className="tickp">No AI Backgrounds</p>
+                </div>
       </div>
     </div>
     </div>
