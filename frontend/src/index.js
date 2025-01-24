@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import Subscription from './Components/Subscription/Subscription';
 import Product from './Components/Product';
 import Pricing from './Components/PricingPage/Pricing';
 import YearlyPrice from './Components/PricingPage/YearlyPrice'; // Import the YearlyPrice component
@@ -25,6 +26,7 @@ root.render(
     <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
       <Router>
         <Routes>
+          <Route path="/subscription" element={<Subscription/>}/>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/" element={<App />} />

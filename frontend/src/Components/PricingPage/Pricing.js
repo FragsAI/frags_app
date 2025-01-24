@@ -79,7 +79,7 @@ const Pricing = () => {
                   <p className="untickp">AI Backgrounds</p>
                 </div>
               </div>
-              <button className="btn btn-login">START CREATING</button>
+              <a href="/subscription"className="btn btn-login">START CREATING</a>
             </div>
 
             {/* Card 2 */}
@@ -134,7 +134,7 @@ const Pricing = () => {
                       <p className="untickp">AI Backgrounds</p>
                     </div>
                   </div>
-                  <button className="btn btn-signup">START CLIPPING</button>
+                  <a href="/subscription" className="btn btn-signup">START CLIPPING</a>
                 </div>
               </div>
             </div>
@@ -184,7 +184,7 @@ const Pricing = () => {
                   <p className="tickp">AI Backgrounds</p>
                 </div>
               </div>
-              <button className="btn btn-login">START FRAGGING</button>
+              <a className="btn btn-login" href="/subscription">START FRAGGING</a>
             </div>
           </div>
         </div>
