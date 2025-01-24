@@ -22,12 +22,14 @@ subscriptionRouter.post('/test-payment-intent', async (req, res) => {
             amount,
             currency: 'usd',
         });
-        return res.status(200).send({
-            clientSecret: paymentIntent.client_secret,
-        });
+        return res.status(200).send(paymentIntent);
     } catch (error) {
         res.status(500).send({ error: error.message });
     }
 });
 
-export default subscriptionRouter;
+subscriptionRouter.get("/test", (req, res) => {
+    res.send("Hello from subscription");
+});
+
+export default subscriptionRouter
