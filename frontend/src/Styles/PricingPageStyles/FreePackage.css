@@ -1,5 +1,6 @@
   .freePackage{
     padding-top: 0px;
+    padding: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,31 +8,74 @@
     text-align: center;
   }
   .free-package-container {
+    padding-left: 30px !important;
+    padding-right: 0px !important;
     display: flex;
     border-radius: 30px; 
-    padding: 20px;
+    padding-top: 40px;
+    padding-bottom: 20px;
     margin-top: 0px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     background-color: #232427;
-    width: 60%; 
-    max-width: 800px; 
+    width: 100%!important; 
+    height: 70%;
+    max-width: 1060px;
     box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added transition */
+
+     
+  }
+  .free-package-container:hover{
+    transform: scale(1.05); /* Slightly enlarge the card */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Add a more prominent shadow */
+    z-index: 10; 
+
   }
   .line{
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding-right: 70px;
     
   }
+
   
   /* Individual div styling */
   .free-package-div {
+    padding-left: 30px !important;
+   
     flex: 1;
-    padding: 10px;
-    text-align: center; 
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center the content */
+  align-items: flex-start; /* Align content to the left */
+  padding: 10px;
+  text-align: left; 
+    
+  }
+  .free-package-div1{
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    flex: 1;
+  display: flex;
+  padding-top: 0px;
+  margin-top: -50px;
+  flex-direction: column;
+  justify-content: center; /* Vertically center the content */
+  align-items: center; /* Horizontally center the content */
+  padding: 10px;
+  text-align: center;
+  }
+
+  .free-package-div1 p {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+  }
+
+  .free-package-div1 h1 {
+    padding-bottom: 0px;
+    margin-bottom: 25px;
   }
   
   /* Vertical line styling */
@@ -43,17 +87,8 @@
     margin: 0 10px;
   }
   
-  /* Unordered list styling */
-  ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  /* List item styling */
-  ul li {
-    margin-bottom: 10px;
-  }
+
+
   .white{
     color: #fff;
   }
@@ -61,3 +96,26 @@
     color: #828282;
 }
  
+.feature-item1{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  text-align: left;
+  align-items: left;
+}
+
+.feature-item1 img{
+    margin-bottom: 10px;
+}
+
+.grayborder{
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    margin-top: 30px !important;
+    border-color: #717383 !important;
+}
+
+.grayborder:hover{
+    background:linear-gradient(to top, #52FFF3,#02A89C) !important;
+    border: none !important;
+}
