@@ -1,7 +1,7 @@
 import React from 'react'
-import "./../Styles/product.css"
-import Header from "./Header"
-import Footer from "./Footer"
+import "../../Styles/product.css"
+import Header from "../Header"
+import Footer from "../Footer"
 
 const Product = () => {
   return (

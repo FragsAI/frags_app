@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import Product from './Components/Product';
+import Product from './Components/ProductPage/Product';
 import Pricing from './Components/PricingPage/Pricing';
 import YearlyPrice from './Components/PricingPage/YearlyPrice'; // Import the YearlyPrice component
 import reportWebVitals from './reportWebVitals';
