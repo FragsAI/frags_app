@@ -12,15 +12,14 @@ app.use(middleware.requestLogger);
 const verifyToken = async (token) => {
     
     try {
-        console.log("clerk token", token)
         console.log("clerk client", await clerkClient.users.getCount())
         // console.log("clerk client", await clerkClient.users.getUserBySessionToken(token))
         console.log("clerk duration", clerkClient.sessions.getTokenDuration(token))
         const session = await clerkClient.sessions.verifySession(token);
         console.log("cler session", session)
-    return session;
+        return session;
     } catch (error) {
-    throw new Error('Invalid or expired token');
+        throw new Error('Invalid or expired token');
     }
 };
   
