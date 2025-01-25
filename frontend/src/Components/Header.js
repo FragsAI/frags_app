@@ -2,9 +2,16 @@ import React, { useState } from "react";
 import "../Styles/header.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useClerk, useUser } from "@clerk/clerk-react";
+
 
 function Header() {
   const [expanded, setExpanded] = useState(false);
+  const { signOut } = useClerk();
+  const { isSignedIn } = useUser();
+  const navigate = useNavigate();
 
   const toggleNavbar = () => {
     setExpanded(!expanded);
@@ -12,6 +19,10 @@ function Header() {
 
   const closeNavbar = () => {
     setExpanded(false);
+  };
+
+  const handleSignOut = () => {
+    signOut(() => navigate('/'));
   };
 
   return (
@@ -51,20 +62,40 @@ function Header() {
           </ul>
           <div className="d-flex">
             {/* Login and Sign Up */}
-            <a
-              href="/login"
-              className="login btn btn-outline-primary me-2"
-              onClick={closeNavbar}
-            >
-              Login
-            </a>
-            <a
-              href="/signup"
-              className="signup btn "
-              onClick={closeNavbar}
-            >
-              Get Started Free
-            </a>
+            <nav>
+              {isSignedIn ? (
+                <>
+                  <Link
+                    to="/dashboard"
+                    className="login btn btn-outline-primary me-2"
+                  >
+                    Dashboard
+                  </Link>
+                  <button
+                    onClick={handleSignOut}
+                    className="signup btn"
+                  >
+                    Sign Out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/login"
+                    className="login btn btn-outline-primary me-2"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/signup"
+                    className="signup btn"
+                    onClick={closeNavbar}
+                  >
+                    Get Started Free
+                  </Link>
+                </>
+              )}
+            </nav>
           </div>
         </div>
       </div>
