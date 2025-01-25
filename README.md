@@ -55,35 +55,38 @@ Before you begin, ensure you have the following installed:
 
 Here are the npm scripts available in this project:
 
-- \`npm run dev\`
+- #### **npm run dev**
   Runs the frontend and backend servers in development mode simultaneously.
 
-- \`\`\
+- #### **npm run start**
   Starts the application in production mode.
 
-- \`\`\
+- #### **npm run install:app**
   Installs dependencies for both the frontend and backend.
 
-- \`\`\
+- #### **npm run start:server**
   Starts the backend server.
 
-- \`\`\
+- #### **npm run dev:server**
   Runs the backend server in development mode with live reloading.
 
-- \`\`\
+- #### **npm run start:client**
   Starts the frontend server.
 
 ---
 
 ### **Project Structure**
 
-The project consists of two main directories:
+The project consists of three main directories:
 
-1. \`\`\
+1. /frontend
    Contains the client-side code (React-based).
 
-2. \`\`\
+2. /backend
    Contains the server-side code.
+
+3. /automation
+   Contains the E2E testing code
 
 ---
 
