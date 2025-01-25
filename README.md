@@ -55,7 +55,7 @@ Before you begin, ensure you have the following installed:
 
 Here are the npm scripts available in this project:
 
-- \`\`\
+- \`npm run dev\`
   Runs the frontend and backend servers in development mode simultaneously.
 
 - \`\`\
