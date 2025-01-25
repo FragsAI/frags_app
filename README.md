@@ -79,13 +79,13 @@ Here are the npm scripts available in this project:
 
 The project consists of three main directories:
 
-1. /frontend
+1. /frontend\
    Contains the client-side code (React-based).
 
-2. /backend
+2. /backend\
    Contains the server-side code.
 
-3. /automation
+3. /automation\
    Contains the E2E testing code
 
 ---
