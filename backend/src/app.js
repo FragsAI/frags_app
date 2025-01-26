@@ -12,11 +12,10 @@ app.use(express.json());
 app.use(middleware.requestLogger);
 app.use(clerkMiddleware());
 app.use('/api/user', userManagementRouter);
+
 app.use('/api/subscription', subscriptionRouter);
 
 app.get('/', async (req, res) => {
-    // const users = await clerkClient.users.getUserList();
-    // console.log(users);
     res.send('Hello World');
 });
 app.use(middleware.unknownEndpoint);

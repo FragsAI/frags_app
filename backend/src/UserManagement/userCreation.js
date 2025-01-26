@@ -1,58 +1,94 @@
 import { clerkClient } from "@clerk/express";
-import { supabase } from "../config/supabase";
+import supabase from "../config/supabase";
 import logger from "../utils/logger";
-import jwt from 'jsonwebtoken';
 
-async function verifySessionToken(sessionToken) {
-  try {
-    const publicKey = process.env.CLERK_JWT_PUBLIC_KEY;
 
-    const decoded = jwt.verify(sessionToken, publicKey);
-    console.log('Verified and decoded session token:', decoded);
 
-    console.log('User ID:', decoded.userId);
-  } catch (error) {
-    console.error('Error verifying session token:', error);
-  }
-}
-async function getCurrentUser(sessionToken) {
+async function getCurrentUser(body) {
     try {
-        console.log('Session token:', sessionToken);
-        const user = null;
-        // verifySessionToken(sessionToken);
-        // console.log('Received session token:', sessionToken);
-
-        // if (!sessionToken) {
-        //     throw new Error('No session token provided');
-        // }
-
-        // const session = await clerkClient.sessions.getSession(sessionToken);
-        // console.log('Session:', session);  // Log session data for debugging
-
-        // if (!session) {
-        //     throw new Error('Session not found');
-        // }
-
-        // const user = await clerkClient.users.getUser(session.userId);
-        // console.log('User:', user);  // Log user data for debugging
+        const user = await clerkClient.users.getUser(body.user_id);
         return user;
     } catch (error) {
-        console.error('Error getting current user:', error);
-        return null;  // Gracefully handle the error by returning null
+        logger.error('Error getting user:', error);
+        return null;
     }
 }
-  
-  
+
+async function insertUser(id = "", email = "") {
+    console.log("Inserting user", id, email);
+    try {
+        const response = await supabase.from("users").insert([
+            {
+                clerk_user_id: id,
+                email: email,
+            },
+        ]);
+
+        if (response.error) {
+            console.error("Error creating user:", response.error);
+            return null;
+        }
+
+        console.log("User created successfully:", response.data);
+        return { data: response.data };
+    } catch (error) {
+        console.error("Unexpected error:", error);
+        return null;
+    }
+}
+
 
 async function CreateUser(req) {
     try {
-        const sessionToken = req.headers.authorization?.split(" ")[1];
-        const user = await getCurrentUser(sessionToken);
-        console.log('User:', user);
+        const user = await getCurrentUser(req.body);
+        if (!user) {
+            return null;
+        }
+        const id  = user.id;
+        const email = user.primaryEmailAddress.emailAddress;
+        const { data } = await insertUser(id, email);
+        return data;
     } catch (error) {
         console.error('Error creating user:', error);
         return null;
     }
 }
 
-export default CreateUser;
+async function updateUserData(req) {
+    try {
+
+        const user = await getCurrentUser(req.body);
+        const {id} = user;
+        const {firstName, lastName, emailAddresses } = req.body;
+        const { data, error } = await clerkClient.users.updateUser(id, {
+            firstName: firstName || user.firstName,
+            lastName: lastName || user.lastName,
+            emailAddresses: emailAddresses || user.emailAddresses,
+        });
+        if (error) {
+            console.error("Error updating user:", error);
+            return null;
+        }
+        return { data };
+    }
+    catch (error) {
+        console.error('Error updating user:', error);
+        return null;
+    }
+}
+
+async function GetUserData(userId) {
+    try {
+        const user = await clerkClient.users.getUser(userId);
+        if (!user) {
+            return null;
+        }
+        return user;
+    } catch (error) {
+        console.error('Error getting user:', error);
+        return null;
+    }
+}
+
+
+export {CreateUser, updateUserData, GetUserData};
