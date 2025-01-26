@@ -29,13 +29,8 @@ subscriptionRouter.post('/', async (req, res) => {
         name: `${user.firstName} ${user.lastName}`,
     })
 
-    const price = await stripe.prices.retrieve(req.body);
-    
-    const subscription = await stripe.subscriptions.create({
-        customer: customer.id,
-        items: [{ price: req.body }]
-    });
-    return res.json(subscription);
+    const price = await stripe.prices.retrieve({price: "price_1Qkq1jCMcuLX2RyD9ReWHWNm"});
+    return res.json(price);
 });
 
 subscriptionRouter.get("/test", (req, res) => {
