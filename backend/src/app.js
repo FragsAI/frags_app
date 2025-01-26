@@ -9,7 +9,6 @@ app.use(cors());
 app.use(express.json());
 app.use(middleware.requestLogger);
 
-
 app.use('/api/subscription', subscriptionRouter);
 
 app.use(middleware.unknownEndpoint);

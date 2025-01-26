@@ -20,6 +20,7 @@
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "punycode": "^2.3.1",
     "response-time": "^2.3.3",
     "specifier-resolution-node": "^1.1.4",
     "stripe": "^17.5.0"
