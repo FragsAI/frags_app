@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import "../Styles/header.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useClerk, useUser } from "@clerk/clerk-react";
-import Dashboard from "./Dashboard/Dashboard";
+import { SignedOut, SignInButton } from "@clerk/clerk-react";
+
 
 function Header() {
   const [expanded, setExpanded] = useState(false);
@@ -68,19 +68,16 @@ function Header() {
           <div className="d-flex">
             {/* Login and Sign Up */}
             <nav>
-            <button
-                className="login btn btn-outline-primary me-2"
-                onClick={() => navigate("/login")}
-              >
-                Login
-              </button>
-              <a
-                href="/signup"
-                className="signup btn"
-                onClick={closeNavbar}
-              >
-                Get Started Free
-              </a>
+            <SignedOut>
+              <SignInButton>
+                <button className="login btn btn-outline-primary me-2">
+                  Login
+                </button>
+              </SignInButton>
+            </SignedOut>
+            <a href="/signup" className="signup btn" onClick={closeNavbar}>
+              Get Started Free
+            </a>
             </nav>
           </div>
         </div>
