@@ -3,6 +3,7 @@ import { ClerkProvider, SignIn } from '@clerk/clerk-react';
 import "../../Styles/AuthenticationStyles/LoginStyles.css";
 import Header from "../Header";
 import Footer from "../Footer"
+import { Link } from "react-router-dom";
 
 const PUBLISHABLE_KEY = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
 
@@ -33,7 +34,12 @@ export default function SignUpPage() {
             </div>
       </div>
       <div className="move-signIn">
-        < SignIn />
+          <SignIn 
+            publishableKey={PUBLISHABLE_KEY} 
+            routing="path" 
+            path="/login"
+            signInFallbackRedirectUrl="/dashboard"
+          />
       </div>
       <Footer />
     </>

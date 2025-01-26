@@ -1,6 +1,6 @@
-import config from "./utils/config";
-import Stripe from "stripe"
+import * as config from "../utils/config";
+import Stripe from "stripe";
 
-const stripe = new Stripe(config.STRIPE_SECRET)
+const stripe = new Stripe(config.STRIPE_SECRET);
 
 export default stripe

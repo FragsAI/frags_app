@@ -33,7 +33,11 @@ export default function SignUpPage() {
             </div>
       </div>
       <div className="move-signUp">
-        < SignUp />
+        <SignUp 
+            publishableKey={PUBLISHABLE_KEY} 
+            routing="path" 
+            path="/signup"
+        />
       </div>
       <Footer />
     </>

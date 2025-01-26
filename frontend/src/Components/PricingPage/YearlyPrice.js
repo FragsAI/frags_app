@@ -5,6 +5,8 @@ import Footer from "../Footer";
 import "../../Styles/PricingPageStyles/Pricing.css";
 import "../../Styles/PricingPageStyles/YearlyPrice.css";
 import PricingFaq from "./PricingFaq"
+import FreePackage from './FreePackage';
+
 
 
 const YearlyPrice = () => {
@@ -80,7 +82,7 @@ const YearlyPrice = () => {
                   <p className="untickp">AI Backgrounds</p>
                 </div>
               </div>
-              <button className="btn btn-login lightgreengradiant">START CREATING</button>
+              <a href="/subscription" className="btn btn-login lightgreengradiant">START CREATING</a>
             </div>
 
             {/* Card 2 */}
@@ -135,7 +137,7 @@ const YearlyPrice = () => {
                       <p className="untickp">AI Backgrounds</p>
                     </div>
                   </div>
-                  <button className="btn lightgreenbackground btn-signup lightgreengradiant">START CLIPPING</button>
+                  <a href="/subscription" className="btn lightgreenbackground btn-signup lightgreengradiant">START CLIPPING</a>
                 </div>
               </div>
             </div>
@@ -185,10 +187,11 @@ const YearlyPrice = () => {
                   <p className="tickp">AI Backgrounds</p>
                 </div>
               </div>
-              <button className="btn btn-login lightgreengradiant">START FRAGGING</button>
+              <a href="/subscription"  className="btn btn-login lightgreengradiant">START FRAGGING</a>
             </div>
           </div>
         </div>
+        <FreePackage/>
         <PricingFaq/>
         <Footer />
       </div>
