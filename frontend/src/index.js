@@ -5,7 +5,7 @@ import App from './App';
 
 import Subscription from './Components/Subscription/Subscription';
 import Product from './Components/ProductPage/Product';
-import Dashboard from "./Components/Dashboard/Dashboard"
+import Dashboard from "./Components/Dashboard/Dashboard";
 import Pricing from './Components/PricingPage/Pricing';
 import YearlyPrice from './Components/PricingPage/YearlyPrice'; // Import the YearlyPrice component
 import reportWebVitals from './reportWebVitals';

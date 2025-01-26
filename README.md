@@ -1,70 +1,121 @@
-# Getting Started with Create React App
+### Frags App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack application for LLM built with a frontend and backend setup.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## **Getting Started**
 
-### `npm start`
+### **Prerequisites**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Before you begin, ensure you have the following installed:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Node.js** (v16 or later) and **npm**
+- **Git**
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### **Setup Instructions**
 
-### `npm run build`
+1. **Clone the Repository**\
+   Open your terminal and run:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   git clone https://github.com/FragsAI/frags_app.git
+   cd frags_app
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **Install Global Dependencies**\
+   Install the required global packages:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   npm install -g nodemon
+   npm install -g concurrently
+   ```
 
-### `npm run eject`
+3. **Install Application Dependencies**\
+   Run the following command to install dependencies for both the frontend and backend:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   npm run install:app
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. **Start the Development Environment**\
+   Launch the application in development mode:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```bash
+   npm run dev
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   This command runs both the frontend and backend concurrently.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### **Available Scripts**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Here are the npm scripts available in this project:
 
-### Code Splitting
+- #### **npm run dev**
+  Runs the frontend and backend servers in development mode simultaneously.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- #### **npm run start**
+  Starts the application in production mode.
 
-### Analyzing the Bundle Size
+- #### **npm run install:app**
+  Installs dependencies for both the frontend and backend.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- #### **npm run start:server**
+  Starts the backend server.
 
-### Making a Progressive Web App
+- #### **npm run dev:server**
+  Runs the backend server in development mode with live reloading.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- #### **npm run start:client**
+  Starts the frontend server.
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### **Project Structure**
 
-### Deployment
+The project consists of three main directories:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. /frontend\
+   Contains the client-side code (React-based).
 
-### `npm run build` fails to minify
+2. /backend\
+   Contains the server-side code.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+3. /automation\
+   Contains the E2E testing code
+
+---
+
+### **Repository Information**
+
+- **Repository URL:** [Frags App GitHub](https://github.com/FragsAI/frags_app)
+- **Issues:** [Report Bugs or Issues](https://github.com/FragsAI/frags_app/issues)
+
+---
+
+### **Contributing**
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeature`).
+3. Commit your changes (`git commit -m "Add your message"`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Open a pull request.
+
+---
+
+### **License**
+
+This project is licensed under the ISC License.
+
+---
+
+### **Support**
+
+For help or inquiries, contact the repository owner or raise an issue in the GitHub repository.
+

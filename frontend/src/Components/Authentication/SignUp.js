@@ -37,6 +37,7 @@ export default function SignUpPage() {
             publishableKey={PUBLISHABLE_KEY} 
             routing="path" 
             path="/signup"
+            signInUrl="/login"
         />
       </div>
       <Footer />
