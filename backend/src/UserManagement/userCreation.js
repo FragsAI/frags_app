@@ -1,15 +1,5 @@
 import { clerkClient } from "@clerk/express";
 import { supabase } from "../config/supabase";
-// import { Clerk } from "@clerk/clerk-sdk-node";
-// async function getSessionTokenForUser(userId) {
-//     try {
-//       const session = await clerkClient.sessions.create({ userId });
-//       return session.session_token;  // This is the session token
-//     } catch (error) {
-//       console.error("Error creating session:", error);
-//       return null;
-//     }
-//   }
 
 async function getCurrentUser(sessionToken) {
     try {
@@ -25,32 +15,18 @@ async function getCurrentUser(sessionToken) {
 async function CreateUser(req) {
     const sessionToken = req.headers.authorization.split(" ")[1];
     const user = await getCurrentUser(sessionToken);
-    console.log(user);
-    // const { email, password, name } = user;
-    // const { email, password, name } = user;
-    // console.log(email, password, name);
-    // const { data, error } = await supabase.auth.signUp({
-    //     email,
-    //     password,
-    // });
-    // if (error) {
-    //     console.error(error);
-    //     return {
-    //         status: 500,
-    //         body: error,
-    //     };
-    // }
-    // const { user } = data;
-    // await supabase.from("profiles").upsert([
-    //     {
-    //         id: user.id,
-    //         name,
-    //     },
-    // ]);
-    // return {
-    //     status: 200,
-    //     body: user,
-    // };
+    const { id, emailAddresses, username, imageUrl } = user;
+    const email = emailAddresses && emailAddresses[0] ? emailAddresses[0].emailAddress : null;
+    console.log(id, email, username, imageUrl);
+    const { data, error } = await supabase
+      .from('users')  // Make sure the table exists in Supabase
+      .upsert({  // Upsert to avoid duplicates
+        id,
+        email,
+        username,
+        imageUrl
+    });
+    // console.log(user);
 }
 
 export default CreateUser;

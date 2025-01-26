@@ -3,7 +3,7 @@ import CreateUser from '../UserManagement/userCreation';
 
 const userManagementRouter = express.Router();
 
-userManagementRouter.get('/test', (req, res) => {
+userManagementRouter.post('/create', (req, res) => {
     const response = CreateUser(req);
 
     if (response) {
