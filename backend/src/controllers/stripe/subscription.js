@@ -3,6 +3,8 @@ import express from 'express';
 const subscriptionRouter = express.Router();
 
 subscriptionRouter.post('/create', async (req, res) => {
+    console.log('Request body:', req.body);
+    console.log('Request headers:', req.headers);
     const { email, payment_method } = req.body;
     const customer = await stripe.customers.create({
         email,
@@ -16,6 +18,8 @@ subscriptionRouter.post('/create', async (req, res) => {
 });
 
 subscriptionRouter.post('/test-payment-intent', async (req, res) => {
+    console.log('Request body:', req.body);
+    console.log('Request headers:', req.headers);
     const { amount } = req.body;
     try {
         const paymentIntent = await stripe.paymentIntents.create({

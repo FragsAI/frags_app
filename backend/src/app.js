@@ -3,16 +3,20 @@ import cors from 'cors';
 import * as middleware from './utils/middleware';
 import subscriptionRouter from './controllers/stripe/subscription';
 import userManagementRouter from './routes/userRoutes';
+import { clerkMiddleware, clerkClient } from '@clerk/express';
+
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(middleware.requestLogger);
-
+app.use(clerkMiddleware());
 app.use('/api/user', userManagementRouter);
 app.use('/api/subscription', subscriptionRouter);
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+    // const users = await clerkClient.users.getUserList();
+    // console.log(users);
     res.send('Hello World');
 });
 app.use(middleware.unknownEndpoint);
