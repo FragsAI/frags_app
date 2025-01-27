@@ -1,17 +1,18 @@
-const BASE_URL = "http://localhost:3000/api/subscription/test-payment-intent"
-const testService = async (amount) => {
-  const response = await fetch(BASE_URL, {
+const BASE_URL = "http://localhost:3000/api/subscription"
+
+const testService = async (amount, token) => {
+  const response = await fetch(`${BASE_URL}/test-payment-intent`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
     },
-    body: JSON.stringify({amount})
+    body: JSON.stringify(amount)
   })
-  console.log(response)
   return response
 }
 
 
-export default {
+export  {
   testService
 }

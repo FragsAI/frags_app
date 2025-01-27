@@ -1,10 +1,12 @@
 import stripe from "../../config/stripe";
 import express from 'express';
-import supabase from "../../config/supabase";
 import { clerkMiddleware, requireAuth, clerkClient } from "@clerk/express";
 const subscriptionRouter = express.Router();
 
-subscriptionRouter.post('/test-payment-intent', async (req, res) => {
+subscriptionRouter.use(clerkMiddleware())
+
+subscriptionRouter.post('/test-payment-intent', async (req, res, next) => {
+    console.log(req.auth)
     const amount = req.body.amount;
     try {
         const paymentIntent = await stripe.paymentIntents.create({
@@ -13,28 +15,37 @@ subscriptionRouter.post('/test-payment-intent', async (req, res) => {
         });
         res.status(200).send(paymentIntent);
     } catch (error) {
-        res.status(500).send({ error: error.message });
+        next(error);
     }
 });
 
-subscriptionRouter.use(clerkMiddleware());
-subscriptionRouter.use(requireAuth());
-
 subscriptionRouter.post('/', async (req, res) => {
-    const user = await clerkClient.users.getUser(req.body.user_id);
-    const customer = await stripe.customers.search({
-        query: `email:${user.primaryEmailAddress.emailAddress}`
-    }).data[0] || await stripe.customers.create({
-        email: user.primaryEmailAddress.emailAddress,
-        name: `${user.firstName} ${user.lastName}`,
-    })
+    try {
+        console.log("req.header:", req.rawHeaders); // Add logging to debug
+        console.log('req.auth:', req.auth); // Add logging to debug
+        const userId = req.auth.userId;
 
-    const price = await stripe.prices.retrieve({price: "price_1Qkq1jCMcuLX2RyD9ReWHWNm"});
-    return res.json(price);
+        if (!userId) {
+            return res.status(401).send("User is not authorized");
+        }
+
+        const user = await clerkClient.users.getUser(userId);
+        const customer = await stripe.customers.search({
+            query: `email:${user.primaryEmailAddress.emailAddress}`
+        }).data[0] || await stripe.customers.create({
+            email: user.primaryEmailAddress.emailAddress,
+            name: `${user.firstName} ${user.lastName}`,
+        });
+
+        const price = await stripe.prices.retrieve("price_1Qkq1jCMcuLX2RyD9ReWHWNm");
+        return res.json({ customer, price });
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
 });
 
-subscriptionRouter.get("/test", (req, res) => {
-    res.send("Hello from subscription");
+subscriptionRouter.get("/", (req, res) => {
+    res.json({ message: "Hello from subscription" });
 });
 
-export default subscriptionRouter
+export default subscriptionRouter;
