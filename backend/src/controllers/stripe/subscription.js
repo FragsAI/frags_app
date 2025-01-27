@@ -1,9 +1,7 @@
 import stripe from "../../config/stripe";
 import express from 'express';
 import { clerkMiddleware, requireAuth, clerkClient } from "@clerk/express";
-const subscriptionRouter = express.Router();
-
-subscriptionRouter.use(clerkMiddleware())
+const subscriptionRouter = express.Router()
 
 subscriptionRouter.post('/test-payment-intent', async (req, res, next) => {
     console.log(req.auth)

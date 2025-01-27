@@ -1,9 +1,12 @@
 import express from 'express';
-import {CreateUser, updateUserData, GetUserData} from '../UserManagement/userCreation';
-import { clerkMiddleware, requireAuth, clerkClient } from "@clerk/express";
+import {CreateUser, updateUserData, GetUserData} from './userCreation';
+import { clerkMiddleware, requireAuth } from "@clerk/express";
+
 const userManagementRouter = express.Router();
 
-userManagementRouter.use(clerkMiddleware);
+userManagementRouter.get('/test', (req, res) => {
+    res.send("Hello from user management");
+});
 
 userManagementRouter.post('/create', (req, res) => {
     const response = CreateUser(req);
@@ -14,6 +17,8 @@ userManagementRouter.post('/create', (req, res) => {
         res.status(500).json({ error: "An error occurred" });
     }
 });
+
+userManagementRouter.use(requireAuth())
 
 userManagementRouter.post('/update', (req, res) => {
     
@@ -27,8 +32,8 @@ userManagementRouter.post('/update', (req, res) => {
 });
 
 
-userManagementRouter.get('/user', (req, res) => {
-    const response = GetUserData(req.query.userId);
+userManagementRouter.get('/', async (req, res) => {
+    const response = await GetUserData(req.auth.userId);
 
     if (response) {
         res.status(200).json(response);
@@ -36,12 +41,5 @@ userManagementRouter.get('/user', (req, res) => {
         res.status(500).json({ error: "An error occurred" });
     }
 });
-
-
-
-userManagementRouter.get('/test', (req, res) => {
-    res.send("Hello from user management");
-});
-
 
 export default userManagementRouter
