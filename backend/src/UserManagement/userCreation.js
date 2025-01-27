@@ -56,9 +56,8 @@ async function CreateUser(req) {
 
 async function updateUserData(req) {
     try {
-
-        const user = await getCurrentUser(req.body);
-        const {id} = user;
+        const user = await getCurrentUser(req.auth);
+        const id = user.userId;
         const {firstName, lastName, emailAddresses } = req.body;
         const { data, error } = await clerkClient.users.updateUser(id, {
             firstName: firstName || user.firstName,

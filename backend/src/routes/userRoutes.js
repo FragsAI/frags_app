@@ -1,8 +1,9 @@
 import express from 'express';
 import {CreateUser, updateUserData, GetUserData} from '../UserManagement/userCreation';
-
+import { clerkMiddleware, requireAuth, clerkClient } from "@clerk/express";
 const userManagementRouter = express.Router();
 
+userManagementRouter.use(clerkMiddleware);
 
 userManagementRouter.post('/create', (req, res) => {
     const response = CreateUser(req);
@@ -15,6 +16,7 @@ userManagementRouter.post('/create', (req, res) => {
 });
 
 userManagementRouter.post('/update', (req, res) => {
+    
     const response = updateUserData(req);
 
     if (response) {
