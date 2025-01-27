@@ -1,5 +1,6 @@
+
 import responseTime from "response-time"
-import logger from "./logger"
+import logger from "./logger.js"
 import chalk from "chalk"
 
 function getStatusColor(statusCode) {
@@ -28,8 +29,8 @@ const unknownEndpoint = (request, response) => {
     response.status(404).send({ error: "unknown endpoint" })
 }
 
-const errorHandler = (error, request, response, next) => {
-    return response.status(500).send({ error: error.message || "Internal Server Error" })
+const errorHandler = () => {
+    return response.status(500).send({ error: "internal server error" })
 }
 
 export { requestLogger, unknownEndpoint, errorHandler }
