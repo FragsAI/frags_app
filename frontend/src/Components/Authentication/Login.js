@@ -1,5 +1,6 @@
 import React from 'react';
 import { SignIn } from '@clerk/clerk-react';
+import { useNavigate, useLocation } from 'react-router-dom'
 import "../../Styles/AuthenticationStyles/LoginStyles.css";
 import Header from "../Header";
 import Footer from "../Footer"
@@ -12,7 +13,9 @@ if (!PUBLISHABLE_KEY) {
 }
 
 export default function SignInPage() {
-    
+  const location = useLocation()
+  const from = location.state?.from.pathname || '/'
+
   return (
     <>
       <Header />
@@ -40,6 +43,7 @@ export default function SignInPage() {
              routing="path"
              path="/login"
              signUpUrl="/signup"
+             fallbackRedirectUrl={from}
           />
       </div>
       <Footer />

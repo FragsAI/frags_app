@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useUser } from "@clerk/clerk-react";
+import React from 'react'
+import { UserButton } from '@clerk/clerk-react';
+import ProtectedRoute from '../Authentication/ProtectedRoute';
 
 function Dashboard() {
   const { isLoaded, isSignedIn, user } = useUser();
@@ -116,6 +117,7 @@ function Dashboard() {
   return (
     <div>
       <h1>Dashboard</h1>
+      <ProtectedRoute>
       <div style={{ marginBottom: "20px" }}>
         <h2>Upload a Video</h2>
         <input
@@ -136,7 +138,7 @@ function Dashboard() {
             </div>
           ))
         )}
-      </div>
+      </ProtectedRoute>
     </div>
   );
 }

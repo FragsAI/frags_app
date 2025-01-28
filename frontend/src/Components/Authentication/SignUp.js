@@ -1,5 +1,6 @@
 import React from 'react';
 import { ClerkProvider, SignUp } from '@clerk/clerk-react';
+import { useLocation } from 'react-router-dom'
 import "../../Styles/AuthenticationStyles/SignUpStyles.css";
 import Header from "../Header";
 import Footer from "../Footer"
@@ -11,6 +12,9 @@ if (!PUBLISHABLE_KEY) {
 }
 
 export default function SignUpPage() {
+  const location = useLocation()
+  const from = location.state?.from.pathname || '/'
+
   return (
     <>
       <Header />

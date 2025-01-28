@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-
 import Subscription from './Components/Subscription/Subscription';
 import Product from './Components/ProductPage/Product';
 import Dashboard from "./Components/Dashboard/Dashboard";

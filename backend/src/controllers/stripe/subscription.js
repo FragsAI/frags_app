@@ -1,7 +1,11 @@
 import stripe from "../../config/stripe";
 import express from 'express';
 import {requireAuth, clerkClient} from "@clerk/express";
+import { getOrCreateStripeUser, createSubscription } from "./subscriptionHelper";
+
+
 const subscriptionRouter = express.Router()
+
 
 subscriptionRouter.post('/test-payment-intent', async (req, res, next) => {
     const amount = req.body.amount;
@@ -16,31 +20,27 @@ subscriptionRouter.post('/test-payment-intent', async (req, res, next) => {
     }
 });
 
-subscriptionRouter.post('/', async (req, res) => {
+subscriptionRouter.post('/', async (req, res, next) => {
     try {
         const userId = req.auth.userId;
 
         if (!userId) {
             return res.status(401).send("User is not authorized");
         }
-
         const user = await clerkClient.users.getUser(userId);
-        const customer = await stripe.customers.search({
-            query: `email:${user.primaryEmailAddress.emailAddress}`
-        }).data[0] || await stripe.customers.create({
-            email: user.primaryEmailAddress.emailAddress,
-            name: `${user.firstName} ${user.lastName}`,
-        });
+
+        const customer = await getOrCreateStripeUser(user)
+        createSubscription(customer)
 
         const price = await stripe.prices.retrieve("price_1Qkq1jCMcuLX2RyD9ReWHWNm");
-        return res.json({ customer, price });
+        return res.status(200).json({ customer, price });
     } catch (error) {
-        return res.status(500).send(error.message);
+        next(error);
     }
 });
 
 subscriptionRouter.get("/", (req, res) => {
-    res.json({ message: "Hello from subscription" });
+    res.status(200).json({ message: "Hello from subscription" });
 });
 
 export default subscriptionRouter;
