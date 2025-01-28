@@ -26,7 +26,8 @@ export default function Subscription() {
       theme: 'stripe'
     }
     const options = {
-      clientSecret: clientSecret
+      clientSecret: clientSecret,
+      appearance
     }
 
     if (isLoading) {

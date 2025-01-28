@@ -1,5 +1,6 @@
 import React from 'react'
-import { UserButton, SignedIn } from '@clerk/clerk-react';
+import { UserButton } from '@clerk/clerk-react';
+import ProtectedRoute from '../Authentication/ProtectedRoute';
 
 const Dashboard = () => {
  
@@ -8,9 +9,9 @@ const Dashboard = () => {
     <>
     <div>
       <h1>Dashboard</h1>
-      <SignedIn>
-        <UserButton />
-      </SignedIn>
+        <ProtectedRoute>
+            <UserButton />
+        </ProtectedRoute>
     </div>
     </>
     
