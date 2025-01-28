@@ -1,6 +1,6 @@
 import express from 'express';
 import {CreateUser, updateUserData, GetUserData} from './userCreation';
-import { clerkMiddleware, requireAuth } from "@clerk/express";
+import { requireAuth } from "@clerk/express";
 
 const userManagementRouter = express.Router();
 

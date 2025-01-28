@@ -1,10 +1,9 @@
 import stripe from "../../config/stripe";
 import express from 'express';
-import { clerkMiddleware, requireAuth, clerkClient } from "@clerk/express";
+import {requireAuth, clerkClient} from "@clerk/express";
 const subscriptionRouter = express.Router()
 
 subscriptionRouter.post('/test-payment-intent', async (req, res, next) => {
-    console.log(req.auth)
     const amount = req.body.amount;
     try {
         const paymentIntent = await stripe.paymentIntents.create({
@@ -19,8 +18,6 @@ subscriptionRouter.post('/test-payment-intent', async (req, res, next) => {
 
 subscriptionRouter.post('/', async (req, res) => {
     try {
-        console.log("req.header:", req.rawHeaders); // Add logging to debug
-        console.log('req.auth:', req.auth); // Add logging to debug
         const userId = req.auth.userId;
 
         if (!userId) {
