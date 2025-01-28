@@ -5,7 +5,7 @@ const info = (...params) => {
 }
 
 const error = (...params) => {
-    console.error(chalk.red(...params))
+    console.error(chalk.bold.red(...params))
 }
 
 const logger ={
