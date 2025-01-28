@@ -17,8 +17,8 @@ function getStatusColor(statusCode) {
 
 const requestLogger = responseTime((request, response, time) => {
     const color = getStatusColor(response.statusCode)
-    logger.info("Method:", request.method)
-    logger.info("Path:", request.path)
+    logger.info("Method:", chalk.hex('#FFA500')(request.method))
+    logger.info("Path:", chalk.yellow(request.path))
     logger.info("Status code:", color(response.statusCode))
     logger.info("Response time:", chalk.green(`${time.toFixed(3)} ms`))
     logger.info("Body:", request.body)
