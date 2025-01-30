@@ -6,6 +6,7 @@ import { getOrCreateStripeUser, createSubscription } from "./subscriptionHelper"
 
 const subscriptionRouter = express.Router()
 
+subscriptionRouter.use(requireAuth())
 
 subscriptionRouter.post('/test-payment-intent', async (req, res, next) => {
     const amount = req.body.amount;

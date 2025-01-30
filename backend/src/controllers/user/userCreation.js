@@ -7,7 +7,7 @@ async function getCurrentUser(auth) {
         const user = await clerkClient.users.getUser(auth.userId);
         return user;
     } catch (error) {
-        logger.error("Invalid Clerk Session or User already exists")
+        logger.error("Invalid Clerk Session")
         return
     }
 }
@@ -52,13 +52,22 @@ async function CreateUser(req) {
 async function updateUserData(req) {
     try {
         const user = await getCurrentUser(req.auth);
-        const id = user.userId;
+        const id = user.id;
         const {firstName, lastName, emailAddresses } = req.body;
         const { data, error } = await clerkClient.users.updateUser(id, {
             firstName: firstName || user.firstName,
             lastName: lastName || user.lastName,
             emailAddresses: emailAddresses || user.emailAddresses,
         });
+        logger.info(firstName, lastName)
+        const { test } = await supabase.from("users").update({
+            full_name: `${firstName} ${lastName}`
+        }).eq("clerk_user_id", user.id)
+
+        if (test) {
+            logger.error(test)
+            return
+        }
         if (error) {
            logger.error(error)
            return
@@ -66,7 +75,7 @@ async function updateUserData(req) {
         return { data };
     }
     catch (error) {
-        logger.error("Failed to Update User")
+        logger.error(error.message)
     }
 }
 
