@@ -42,4 +42,16 @@ userManagementRouter.get('/', async (req, res) => {
     }
 });
 
+// delete user from database
+
+userManagementRouter.delete('/', (req, res) => {
+    const response = deleteUser(req);
+    
+    if (response) {
+        res.status(200).json(response);
+    }
+    else {
+        res.status(500).json({ error: "An error occurred" });
+    }
+});
 export default userManagementRouter

@@ -91,5 +91,23 @@ async function GetUserData(userId) {
     }
 }
 
+async function deleteUser(req) {
+    try {
+        const user = await getCurrentUser(req.auth);
+        const { data, error } = await clerkClient.users.deleteUser(user.id);
+        if (error) {
+            logger.error(error)
+            return
+        }
+        const { test } = await supabase.from("users").delete().eq("clerk_user_id", user.id)
+        if (test) {
+            logger.error(test)
+            return
+        }
+        return { data };
+    } catch (error) {
+        logger.error("Failed to delete user")
+    }
+}
 
 export {CreateUser, updateUserData, GetUserData};
