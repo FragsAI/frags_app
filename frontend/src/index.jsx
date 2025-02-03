@@ -14,9 +14,9 @@ import SignUp from "./Components/Authentication/SignUp";
 import { ClerkProvider } from '@clerk/clerk-react';
 
 // Access environment variable
-const PUBLISHABLE_KEY = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
-const SIGNIN_URL = process.env.REACT_APP_CLERK_SIGN_IN_URL;
-const SIGNUP_URL = process.env.REACT_APP_CLERK_SIGN_UP_URL;
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+const SIGNIN_URL = import.meta.env.VITE_CLERK_SIGN_IN_URL;
+const SIGNUP_URL = import.meta.env.VITE_CLERK_SIGN_UP_URL;
 
 if (!PUBLISHABLE_KEY) {
   console.error('Clerk Publishable Key is missing. Add it to the .env file.');

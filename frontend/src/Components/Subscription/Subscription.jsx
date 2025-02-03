@@ -6,7 +6,7 @@ import * as subscriptionService from './SubscriptionService';
 import React from "react";
 import {useEffect, useState} from "react";
 
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 export default function Subscription() {
     const [clientSecret, setClientSecret] = useState("");
