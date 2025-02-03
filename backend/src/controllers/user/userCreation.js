@@ -1,10 +1,13 @@
 import { clerkClient } from "@clerk/express";
-import supabase from "../../config/supabase";
+import createSupabase from "../../config/supabase";
 import logger from "../../utils/logger";
 
 async function getCurrentUser(auth) {
     try {
+        const supabase = await createSupabase(auth.sessionID)
         const user = await clerkClient.users.getUser(auth.userId);
+        const supabaseAuth = await supabase.auth.getUser()
+        logger.info(supabaseAuth)
         return user;
     } catch (error) {
         logger.error("Invalid Clerk Session")
@@ -12,9 +15,10 @@ async function getCurrentUser(auth) {
     }
 }
 
-async function insertUser(id, email) {
+async function insertUser(sessionId, id, email) {
     logger.info("Inserting user", id, email);
     try {
+        const supabase = await createSupabase(sessionId)
         const response = await supabase.from("users").insert([
             {
                 clerk_user_id: id,
@@ -33,16 +37,15 @@ async function insertUser(id, email) {
     }
 }
 
-
 async function CreateUser(req) {
     try {
         const user = await getCurrentUser(req.auth);
         if (!user) {
             return;
         }
-        const id  = user.id;
+        const id = user.id;
         const email = user.primaryEmailAddress.emailAddress;
-        const data = await insertUser(id, email);
+        const data = await insertUser(req.auth.sessionId, id, email);
         return data;
     } catch (error) {
         logger.error("Invalid Session")
@@ -54,24 +57,15 @@ async function updateUserData(req) {
         const user = await getCurrentUser(req.auth);
         const id = user.id;
         const {firstName, lastName, emailAddresses } = req.body;
-        const { data, error } = await clerkClient.users.updateUser(id, {
+        const { data } = await clerkClient.users.updateUser(id, {
             firstName: firstName || user.firstName,
             lastName: lastName || user.lastName,
             emailAddresses: emailAddresses || user.emailAddresses,
         });
-        logger.info(firstName, lastName)
-        const { test } = await supabase.from("users").update({
+        const supabase = await createSupabase(req.auth.sessionID)
+        const { error } = await supabase.from("users").update({
             full_name: `${firstName} ${lastName}`
         }).eq("clerk_user_id", user.id)
-
-        if (test) {
-            logger.error(test)
-            return
-        }
-        if (error) {
-           logger.error(error)
-           return
-        }
         return { data };
     }
     catch (error) {

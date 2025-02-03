@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 
 const info = (...params) => {
-    console.log(chalk(...params))
+    console.log(...params)
 }
 
 const error = (...params) => {

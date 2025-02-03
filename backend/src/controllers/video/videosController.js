@@ -1,7 +1,7 @@
-import supabase from '../../config/supabase.js';
+import createSupabase from '../../config/supabase.js';
 import logger from '../../utils/logger.js';
 import { clerkClient, requireAuth } from '@clerk/express';
-import * as config from '../../utils/config'
+import config from '../../utils/config'
 import multer from 'multer';
 import express from 'express'
 
@@ -23,6 +23,7 @@ videoRouter.post('/', upload.single('file'), async (request, response) => {
     const storagePath = `${user.id}/${videoFile.originalname.replace(/\s+/g, '_')}`;
     logger.info("Generated Storage Path:", storagePath);
 
+    const supabase = await createSupabase(request.auth.sessionId)
     const { data: uploadData, error: uploadError } = await supabase.storage
       .from("video_storage")
       .upload(storagePath, videoFile.buffer, {
@@ -64,6 +65,7 @@ videoRouter.get("/", async(request, response) => {
   try {
     const user = await clerkClient.users.getUser(request.auth.userId)
 
+    const supabase = await createSupabase(request.auth.sessionId)
     const { data: videos, error } = await supabase
       .from("videos")
       .select("*")

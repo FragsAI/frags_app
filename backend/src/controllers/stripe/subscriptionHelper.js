@@ -1,7 +1,9 @@
 import stripe from '../../config/stripe'
-import supabase from '../../config/supabase'
+import { clerkClient } from '@clerk/express';
+import createSupabase from "../../config/supabase";
 
-export const getOrCreateStripeUser = async (user) => {
+export const getOrCreateStripeUser = async (auth) => {
+    const user = await clerkClient.users.getUser(auth.userId)
     let customer = await stripe.customers.search({
         query: `email:'${user.primaryEmailAddress.emailAddress}' metadata['clerk_id']:'${user.id}'`
     })
@@ -13,10 +15,13 @@ export const getOrCreateStripeUser = async (user) => {
                clerk_id: user.id 
             }
         })
-        const { error } = await supabase
+
+        const supabase = await createSupabase(auth.sessionId)
+        await supabase
             .from('users')
             .update({stripe_id: customer.id})
-            .eq("clerk_id", user.id)
+            .eq("clerk_user_id", user.id)
+
     } else customer = customer.data[0]
     return customer
 }

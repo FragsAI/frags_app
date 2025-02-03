@@ -4,8 +4,6 @@ import * as middleware from './utils/middleware';
 import subscriptionRouter from './controllers/stripe/subscription';
 import userManagementRouter from './controllers/user/userManagement';
 import { clerkMiddleware } from '@clerk/express';
-
-// Import video controllers
 import videoRouter from './controllers/video/videosController';
 
 const app = express();
@@ -25,5 +23,6 @@ app.get('/', async (req, res) => {
 
 // Handle unknown endpoints
 app.use(middleware.unknownEndpoint);
+app.use(middleware.errorHandler)
 
 export default app;
