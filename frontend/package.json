@@ -1,6 +1,7 @@
 {
   "name": "frags_app",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "dependencies": {
     "@clerk/clerk-react": "^5.22.5",
