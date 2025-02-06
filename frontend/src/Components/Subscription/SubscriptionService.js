@@ -1,7 +1,7 @@
 const BASE_URL = "http://localhost:3000/api/subscription"
 
 const testService = async (amount, token) => {
-  const response = await fetch(`${BASE_URL}/test-payment-intent`, {
+  const response = await fetch(`${BASE_URL}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

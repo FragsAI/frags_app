@@ -21,7 +21,6 @@ function Header() {
   };
 
   const handleSignIn = () => {
-    // Store current path before redirecting to login
     localStorage.setItem('intendedDestination', location.pathname);
     navigate('/login');
   };

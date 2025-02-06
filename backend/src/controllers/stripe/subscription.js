@@ -29,10 +29,8 @@ subscriptionRouter.post('/', async (req, res, next) => {
             return res.status(401).send("User is not authorized");
         }
         const customer = await getOrCreateStripeUser(req.auth)
-        createSubscription(customer)
-
-        const price = await stripe.prices.retrieve("price_1Qkq1jCMcuLX2RyD9ReWHWNm");
-        return res.status(200).json({ customer, price });
+        const subscription = await createSubscription(customer, "price_1Qkq1jCMcuLX2RyD9ReWHWNm")
+        return res.status(200).json(subscription);
     } catch (error) {
         next(error);
     }
