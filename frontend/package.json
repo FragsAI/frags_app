@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@clerk/clerk-react": "^5.22.5",
+    "@radix-ui/react-slot": "^1.1.2",
     "@stripe/react-stripe-js": "^3.1.1",
     "@stripe/stripe-js": "^5.5.0",
     "@tailwindcss/vite": "^4.0.3",
@@ -53,6 +54,8 @@
   "devDependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
     "@types/node": "^22.13.1",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
     "autoprefixer": "^10.4.20",
     "babel-loader": "^9.2.1",
     "html-webpack-plugin": "^5.6.3",

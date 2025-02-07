@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "../../Styles/LandingPageStyles/credentials.css";
+import { Button } from "@/components/ui/button"
 
 const Credentials = () => {
 
