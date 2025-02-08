@@ -31,12 +31,15 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:storybook/recommended"
     ]
   },
   "browserslist": {
@@ -52,15 +55,27 @@
     ]
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.4",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
+    "@storybook/addon-essentials": "^8.5.3",
+    "@storybook/addon-interactions": "^8.5.3",
+    "@storybook/addon-onboarding": "^8.5.3",
+    "@storybook/blocks": "^8.5.3",
+    "@storybook/react": "^8.5.3",
+    "@storybook/react-vite": "^8.5.3",
+    "@storybook/test": "^8.5.3",
     "@types/node": "^22.13.1",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
+    "@types/react-slick": "^0.23.13",
     "autoprefixer": "^10.4.20",
     "babel-loader": "^9.2.1",
+    "eslint-plugin-storybook": "^0.11.2",
     "html-webpack-plugin": "^5.6.3",
     "postcss": "^8.5.1",
+    "storybook": "^8.5.3",
     "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.3",
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.0"

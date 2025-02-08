@@ -1,15 +1,19 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "outDir": "./build/",
     "sourceMap": true,
     "noImplicitAny": true,
-    "jsx":"react-jsx",
-    "module": "ES6",
-    "target":"ES6",
+    "jsx":"react",
+    "types": ["vite/client"],
+    "module": "ESNext",
+    "target":"ESNext",
     "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "paths": {
       "@/*": ["./src/*"],
     }
-  }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }
