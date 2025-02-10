@@ -4,6 +4,7 @@ import * as DashboardService from './DashboardService'
 import { useState, useEffect } from 'react'
 import { useAuth } from '@clerk/clerk-react'
 import ProtectedRoute from '../Authentication/ProtectedRoute';
+import Header from '../Base/Header';
 
 interface Video {
   id: string,
@@ -65,6 +66,7 @@ const Dashboard: React.FC = () => {
     <div>
       <h1>Dashboard</h1>
       <ProtectedRoute>
+        <Header />
         <UserButton />
       <div style={{ marginBottom: "20px" }}>
         <h2>Upload a Video</h2>

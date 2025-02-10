@@ -2,15 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import Subscription from './Components/Subscription/Subscription';
-import Product from './Components/ProductPage/Product';
-import Dashboard from "./Components/Dashboard/Dashboard";
-import Pricing from './Components/PricingPage/Pricing';
-import YearlyPrice from './Components/PricingPage/YearlyPrice'; // Import the YearlyPrice component
+import Subscription from './components/Subscription/Subscription';
+import Product from './components/ProductPage/Product';
+import Dashboard from "./components/Dashboard/Dashboard";
+import Pricing from './components/PricingPage/Pricing';
+import YearlyPrice from './components/PricingPage/YearlyPrice'; // Import the YearlyPrice component
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from "./Components/Authentication/Login";
-import SignUp from "./Components/Authentication/SignUp";
+import Login from "./components/Authentication/Login";
+import SignUp from "./components/Authentication/SignUp";
 import { ClerkProvider } from '@clerk/clerk-react';
+import ScrollToTop from './components/Accessories/ScrollToLocation';
 
 // Access environment variable
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -32,16 +33,18 @@ root.render(
       signUpUrl={SIGNUP_URL}
     >
       <Router>
-        <Routes>
-          <Route path="/dashboard" element={<Dashboard/>}/>
-          <Route path="/subscription" element={<Subscription/>}/>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/" element={<App />} />
-          <Route path="/product" element={<Product />} />
-          <Route path="/pricing" element={<Pricing />} />
-          <Route path="/yearlyprice" element={<YearlyPrice />} /> {/* Add the route for YearlyPrice */}
-        </Routes>
+        <ScrollToTop>
+          <Routes>
+            <Route path="/dashboard" element={<Dashboard/>}/>
+            <Route path="/subscription" element={<Subscription/>}/>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/" element={<App />} />
+            <Route path="/product" element={<Product />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/yearlyprice" element={<YearlyPrice />} /> {/* Add the route for YearlyPrice */}
+          </Routes>
+        </ScrollToTop>
       </Router>
     </ClerkProvider>
   </React.StrictMode>

@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from "../Header";
+import Header from "../Base/Header";
 import { useLocation, Link } from 'react-router-dom'; // Import Link for navigation
-import Footer from "../Footer";
+import Footer from "../Base/Footer";
 import "../../Styles/PricingPageStyles/Pricing.css";
 import FreePackage from './FreePackage';
 import PricingFaq from "./PricingFaq"

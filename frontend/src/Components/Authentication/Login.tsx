@@ -2,8 +2,8 @@ import React from 'react';
 import { SignIn } from '@clerk/clerk-react';
 import { useLocation } from 'react-router-dom'
 import "../../Styles/AuthenticationStyles/LoginStyles.css";
-import Header from "../Header";
-import Footer from "../Footer"
+import Header from "../Base/Header";
+import Footer from "../Base/Footer"
 
 const SignInPage: React.FC = () => {
   const location = useLocation()

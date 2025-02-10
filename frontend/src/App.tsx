@@ -1,14 +1,14 @@
 import './App.css';
 import React, { useRef, } from "react";
-import Home from "./Components/LandingPage/Home";
-import Features from './Components/LandingPage/Features';
-import Prefooter from './Components/LandingPage/Prefooter';
-import Header from './Components/Header';
-import Testimonials from './Components/LandingPage/Testimonials';
-import Getstarted from './Components/LandingPage/Getstarted';
-import Faq from './Components/LandingPage/Faq';
-import Footer from './Components/Footer';
-import Credentials from './Components/LandingPage/Credentials';
+import Home from "./components/LandingPage/Home";
+import Features from './components/LandingPage/Features';
+import Prefooter from './components/LandingPage/Prefooter';
+import Header from './components/Base/Header';
+import Testimonials from './components/LandingPage/Testimonials';
+import Getstarted from './components/LandingPage/Getstarted';
+import Faq from './components/LandingPage/Faq';
+import Footer from './components/Base/Footer';
+import Credentials from './components/LandingPage/Credentials';
 
 const App: React.FC = () => {
   /*const home = useRef(null);

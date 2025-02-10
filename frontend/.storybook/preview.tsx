@@ -1,5 +1,6 @@
 /// <reference types="vite/client" />
 /// <reference types="vite/types/importMeta.d.ts" />
+import 'tailwindcss/tailwind.css';
 
 
 interface ImportMeta {

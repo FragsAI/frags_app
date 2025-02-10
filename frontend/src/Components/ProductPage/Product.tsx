@@ -1,7 +1,7 @@
 import React from 'react'
 import "../../Styles/product.css"
-import Header from "../Header"
-import Footer from "../Footer"
+import Header from "../Base/Header"
+import Footer from "../Base/Footer"
 
 const Product: React.FC = () => {
   return (
