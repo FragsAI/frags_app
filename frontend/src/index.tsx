@@ -25,28 +25,30 @@ if (!PUBLISHABLE_KEY) {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <ClerkProvider 
-      publishableKey={PUBLISHABLE_KEY} 
-      afterSignOutUrl="/" 
-      signInUrl={SIGNIN_URL}
-      signUpUrl={SIGNUP_URL}
-    >
-      <Router>
-        <ScrollToTop>
-          <Routes>
-            <Route path="/dashboard" element={<Dashboard/>}/>
-            <Route path="/subscription" element={<Subscription/>}/>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/" element={<App />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/yearlyprice" element={<YearlyPrice />} /> {/* Add the route for YearlyPrice */}
-          </Routes>
-        </ScrollToTop>
-      </Router>
-    </ClerkProvider>
-  </React.StrictMode>
+  <div className='dark font-inter'>
+    <React.StrictMode>
+      <ClerkProvider 
+        publishableKey={PUBLISHABLE_KEY} 
+        afterSignOutUrl="/" 
+        signInUrl={SIGNIN_URL}
+        signUpUrl={SIGNUP_URL}
+      >
+        <Router>
+          <ScrollToTop>
+            <Routes>
+              <Route path="/dashboard" element={<Dashboard/>}/>
+              <Route path="/subscription" element={<Subscription/>}/>
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/" element={<App />} />
+              <Route path="/product" element={<Product />} />
+              <Route path="/pricing" element={<Pricing />} />
+              <Route path="/yearlyprice" element={<YearlyPrice />} /> {/* Add the route for YearlyPrice */}
+            </Routes>
+          </ScrollToTop>
+        </Router>
+      </ClerkProvider>
+    </React.StrictMode>
+  </div>
 );
 

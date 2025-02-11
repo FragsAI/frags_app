@@ -15,7 +15,7 @@ const socialIcons = [
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear()
   return (
-    <footer className="container text-white font-inter">
+    <footer className="container text-white">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
         <div className="flex flex-col gap-4">
           <div className="font-bold text-xl">COMPANY</div>
