@@ -2,10 +2,11 @@
 
 import Icons from "@/components/icons"
 import NavBar from "./NavBar"
-import SideBar from "./SideBar"
+import {motion, AnimatePresence} from "framer-motion"
 import React, { useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useClerk, useUser } from "@clerk/clerk-react";
+import MobileMenu from "./MobileMenu";
 
 // STILL WORK IN PROGRESS
 
@@ -53,10 +54,24 @@ const Header: React.FC = () => {
   const { isSignedIn } = useUser();
   const navigate = useNavigate();
   const location = useLocation();
+  const [isMobileOpen, setIsMobileOpen] = useState<boolean>(false)
 
   const toggleSidebar = () => {
     setExpanded(!expanded);
   };
+
+  const toggleMobileMenu = () => {
+    setIsMobileOpen(!isMobileOpen)
+  }
+
+  const handleToggles = () => {
+    toggleSidebar()
+    toggleMobileMenu()
+  }
+
+  const closeMobileMenu = () => {
+    setIsMobileOpen(false)
+  }
 
   const handleSignIn = () => {
     localStorage.setItem("intendedDestination", location.pathname);
@@ -69,38 +84,59 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <header className="fixed top-0 w-full z-50 mx-auto px-4 py-4 flex content-center items-center justify-between bg-black text-white font-inter shadow-lg inset-shadow-stone-950">
-        <div className="flex items-center gap-4">
-          <button id="sidebarToggle" className="block lg:hidden" onClick={toggleSidebar}>
-            <Icons.AlignJustify size="30">
-            </Icons.AlignJustify>
-          </button>
-
-          <Link to="/">
-            <img src="../assets/Frame 50126812.png" alt="Frags Logo" className=""/>
-          </Link>
-        </div>
-        <NavBar components={components} />
-      <div className="flex items-center gap-5 text-white">
-      {isSignedIn 
-      ?   <>
-            <Link to="/dashboard" className="text-lg font-bold self-center hover:text-gray-300 transition duration-300 ease-in-out">
-              Dashboard
-            </Link>
-            <button onClick={handleSignOut} className="hidden md:block text-lg font-bold self-center hover:text-gray-300 transition duration-300 ease-in-out">
-              Signout
+      {isMobileOpen && (
+        <div className="fixed inset-0 backdrop-blur-lg bg-black bg-opacity-20 z-40"></div>
+      )}
+  
+      <header className={`fixed top-0 w-full z-50 mx-auto px-4 flex flex-col py-4 bg-black text-white font-inter shadow-lg ${isMobileOpen ? 'backdrop-blur bg-opacity-90' : ''}`}>
+        <div className="flex flex-1 justify-between">
+          <div className="flex items-center gap-4">
+            <button id="sidebarToggle" className="lg:hidden transition duration-250 hover:scale-125 hover:text-gray-300" onClick={handleToggles}>
+              {isMobileOpen ? <Icons.X size="30" /> : <Icons.AlignJustify size="30" />}
             </button>
-          </>
-      :     <>
-              <button onClick={handleSignIn} className="hidden md:block text-md font-bold self-center hover:text-gray-300 transition duration-300 ease-in-out">Login</button>
-              <Link to="/signup" className="bg-white text-md text-black rounded-3xl px-4 py-1 hover:bg-gray-300 transition duration-300 ease-in-out">
-                Get Started Free
-              </Link>
-            </>
-      }
-      </div> 
+  
+            <Link to="/">
+              <img src="../assets/Frame 50126812.png" alt="Frags Logo" className=""/>
+            </Link>
+          </div>
+          <NavBar components={components} />
+          <div className="flex items-center gap-5 text-white">
+            {isSignedIn ? (
+              <>
+                <Link to="/dashboard" className="text-lg font-bold self-center hover:text-gray-300 transition duration-300 ease-in-out">
+                  Dashboard
+                </Link>
+                <button onClick={handleSignOut} className="hidden md:block text-lg font-bold self-center hover:text-gray-300 transition duration-300 ease-in-out">
+                  Signout
+                </button>
+              </>
+            ) : (
+              <>
+                <button onClick={handleSignIn} className="hidden md:block text-md font-bold self-center hover:text-gray-300 transition duration-300 ease-in-out">Login</button>
+                <Link to="/signup" className="bg-white text-md text-black rounded-3xl px-4 py-1 hover:bg-gray-300 transition duration-300 ease-in-out">
+                  Get Started Free
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
+        <AnimatePresence>
+          {isMobileOpen && (
+            <motion.div 
+              initial="collapsed"
+              animate="open"
+              exit="collapsed"
+              variants={{
+                open: { opacity: 1, height: 'auto' },
+                collapsed: { opacity: 0, height: 0 }
+              }}
+              transition={{ height: { duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }, opacity: { duration: 0 } }}
+            >
+              <MobileMenu components={components} />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
-      {expanded && <SideBar expanded={expanded} setExpanded={setExpanded} components={components} />}
     </>
   );
 }

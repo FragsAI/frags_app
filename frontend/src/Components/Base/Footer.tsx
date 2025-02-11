@@ -1,10 +1,22 @@
 import React from 'react'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import { faFacebook, faXTwitter, faLinkedin, faDiscord, faYoutube, faTiktok, faInstagram }  from '@fortawesome/free-brands-svg-icons'
+
+const socialIcons = [
+  { icon: faFacebook, url: 'https://www.facebook.com/' },
+  { icon: faXTwitter, url: 'https://twitter.com/' },
+  { icon: faLinkedin, url: 'https://www.linkedin.com/' },
+  { icon: faDiscord, url: 'https://discord.com/' },
+  { icon: faYoutube, url: 'https://www.youtube.com/' },
+  { icon: faTiktok, url: 'https://www.tiktok.com/' },
+  { icon: faInstagram, url: 'https://www.instagram.com/' }
+];
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear()
   return (
     <footer className="container text-white font-inter">
-      <div className="grid grid-cols-2 lg:grid-cols-5">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
         <div className="flex flex-col gap-4">
           <div className="font-bold text-xl">COMPANY</div>
           <div className="font-bold text-gray-400 flex flex-col gap-4">
@@ -52,12 +64,12 @@ const Footer: React.FC = () => {
         </div>
       </div>
       <div className="my-8 w-full border-b border-gray-400 border-2"></div>
-      <div className="flex justify-between w-full">
-        <div className="font-bold">
+      <div className="flex flex-col lg:flex-row justify-start lg:justify-between w-full items-center gap-5">
+        <div className="font-bold text-lg lg:text-xl">
           <p>&copy; {currentYear} Frags AI by Frags Inc. All rights reserved.</p>
         </div>
-        <div className="flex gap-3">
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+        <div className="flex gap-5 flex-wrap justify-center mb-3">
+          {/* <a href="https://github.com" target="_blank" rel="noopener noreferrer">
             <img src="../assets/a.png" alt="GitHub" className="social-icon" />
           </a>
           <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
@@ -71,7 +83,12 @@ const Footer: React.FC = () => {
           </a>
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
             <img src="../assets/a (1).png" alt="Instagram" className="social-icon" />
-          </a>
+          </a> */}
+            {socialIcons.map((icon) => (
+              <a href={icon.url} target="_blank" rel="noopener noreferrer" className='bg-[#181818] p-3 rounded-xl w-14 h-14 flex items-center justify-center hover:bg-[#232323] transition duration-250 shadow-sm shadow-gray-700'>
+                <FontAwesomeIcon icon={icon.icon} size="lg" className=""></FontAwesomeIcon>
+              </a>
+            ))}
         </div>
       </div>
     </footer>
