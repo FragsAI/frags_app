@@ -28,13 +28,9 @@ subscriptionRouter.post('/', async (req, res, next) => {
         if (!userId) {
             return res.status(401).send("User is not authorized");
         }
-        const user = await clerkClient.users.getUser(userId);
-
-        const customer = await getOrCreateStripeUser(user)
-        createSubscription(customer)
-
-        const price = await stripe.prices.retrieve("price_1Qkq1jCMcuLX2RyD9ReWHWNm");
-        return res.status(200).json({ customer, price });
+        const customer = await getOrCreateStripeUser(req.auth)
+        const subscription = await createSubscription(customer, "price_1Qkq1jCMcuLX2RyD9ReWHWNm")
+        return res.status(200).json(subscription);
     } catch (error) {
         next(error);
     }
