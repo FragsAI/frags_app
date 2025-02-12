@@ -25,12 +25,12 @@ export const uploadVideoToSupabase = async (user, videoFile, sessionId) => {
   const userUUID = userData.id;
   logger.info("Mapped Clerk ID to Supabase UUID:", userUUID);
 
-  const supabaseWithUUID = createSupabaseClientWithUUID(userUUID);
+  // const supabaseWithUUID = createSupabaseClientWithUUID(userUUID);
 
   const storagePath = `${userUUID}/${videoFile.originalname.replace(/\s+/g, '_')}`;
   logger.info("Generated Storage Path:", storagePath);
 
-  const { data: uploadData, error: uploadError } = await supabaseWithUUID.storage
+  const { data: uploadData, error: uploadError } = await clerkSupabase.storage
     .from("video_storage")
     .upload(storagePath, videoFile.buffer, {
       cacheControl: "3600",
@@ -48,7 +48,7 @@ export const uploadVideoToSupabase = async (user, videoFile, sessionId) => {
   const videoUrl = `${config.DB_URI}/storage/v1/object/public/video_storage/${storagePath}`;
   logger.info("Generated Video URL:", videoUrl);
 
-  const { error: dbError } = await supabaseWithUUID
+  const { error: dbError } = await clerkSupabase
     .from("videos")
     .insert([{ id: userUUID, url: videoUrl }]);
 
@@ -77,9 +77,9 @@ export const fetchUserVideos = async (user, sessionId) => {
   const userUUID = userData.id;
   logger.info("Mapped Clerk ID to Supabase UUID:", userUUID);
 
-  const supabaseWithUUID = createSupabaseClientWithUUID(userUUID);
+  // const supabaseWithUUID = createSupabaseClientWithUUID(userUUID);
 
-  const { data: videos, error } = await supabaseWithUUID
+  const { data: videos, error } = await clerkSupabase
     .from("videos")
     .select("*")
     .eq("id", userUUID)
