@@ -1,5 +1,5 @@
 import express from 'express';
-import {CreateUser, updateUserData, GetUserData} from './userCreation';
+import {CreateUser, updateUserData, GetUserData, deleteUser} from './userCreation';
 import { requireAuth } from "@clerk/express";
 
 const userManagementRouter = express.Router();
@@ -42,7 +42,6 @@ userManagementRouter.get('/', async (req, res) => {
     }
 });
 
-// delete user from database
 
 userManagementRouter.delete('/', (req, res) => {
     const response = deleteUser(req);

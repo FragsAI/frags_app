@@ -110,4 +110,4 @@ async function deleteUser(req) {
     }
 }
 
-export {CreateUser, updateUserData, GetUserData};
+export {CreateUser, updateUserData, GetUserData, deleteUser};
