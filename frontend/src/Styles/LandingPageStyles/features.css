@@ -1,4 +1,4 @@
-/* .features-content {
+.features-content {
     margin-top: 330px;
 }
 
@@ -44,7 +44,7 @@
 
 .rowTwoText,
 .rowFourText {
-    order: 1;
+    order: 2;
    
 }
 
@@ -57,24 +57,25 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    width: 300px;
+    width: clamp(200px, 20vw, 300px); 
     height: auto;
 }
 
-#iphone1, #iphone2, #iphone3 {
+
+/* #iphone1, #iphone2, #iphone3 {
     position: absolute;
     transform-origin: bottom left;
     width: clamp(200px, 20vw, 300px);
-}
+} */
 
 
-#iphone4, #iphone5, #iphone6 {
+/* #iphone4, #iphone5, #iphone6 {
     position: absolute;
     transform-origin: bottom right;
     width: clamp(200px, 20vw, 300px);
-}
+} */
 
-@media screen and (max-width: 1200px) {
+/* @media screen and (max-width: 1200px) {
     #iphone1,
     #iphone2,
     #iphone3, 
@@ -105,9 +106,9 @@
     #iphone6 {
         width: clamp(120px, 12vw, 200px);
     }
-}
+} */
 
-#iphone1 {
+/* #iphone1 {
     z-index: 3;
     transform: translateX(-20px) rotate(0deg);
 }
@@ -135,7 +136,7 @@
 #iphone6 {
     z-index: 1;
     transform: translateX(30px) rotate(22deg);
-}
+} */
 
 
 .rowOneText,
@@ -145,19 +146,14 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-
-.rowOneText,
-.rowTwoText,
-.rowThreeText,
-.rowFourText {
     align-items: flex-start;
 }
 
 
 .rowOneText img,
-.rowThreeText img{
-    width: clamp(300px, 25vw, 400px);
+.rowThreeText img,
+.rowTwoText img{
+    width: clamp(300px, 20vw, 400px);
     height: auto;
     object-fit: contain;
 }
@@ -226,14 +222,14 @@
     }
 }
 
-#textOneC,
+/* #textOneC,
 #textTwoC,
 #textThreeC,
 #textFourC {
     cursor: pointer;
     width: 30%; 
     height: auto;
-}
+} */
 
 @media screen and (max-width: 1200px) {
     .move-row-two
@@ -413,10 +409,10 @@
     .rowFourText img {
         width: clamp(150px, 15vw, 250px);
     }
-} */
+}
 
 
-.features-content {
+/* .features-content {
     display: flex; 
     justify-content: center; 
     align-items: center; 
@@ -494,4 +490,31 @@
         width: 150px;
         height: auto;
     }
+} */
+
+
+.join-comm-container {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically if needed */
+    width: 100%;
+    margin-top: 150px;
+    margin-bottom: 150px;
 }
+
+.move-join-comm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+    gap: 100px;
+}
+
+.move-join-comm img {
+    width: clamp(300px, 60%, 800px);
+    height: auto;
+    object-fit: contain;
+}
+
+
+
