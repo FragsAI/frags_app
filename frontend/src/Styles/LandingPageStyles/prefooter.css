@@ -1,6 +1,6 @@
 /* Prefooter styles */
 .prefooter {
-    background-image: url('/assets/5f7cba0d44a746f394afdd86_topo-lines.svg (1).png');
+    /* background-image: url('/assets/5f7cba0d44a746f394afdd86_topo-lines.svg (1).png'); */
   background-size: 100% 100%; 
   background-position: center; 
   display: flex; 
@@ -58,6 +58,7 @@
     display: flex;
     justify-content: center;
     gap: 40px; 
+    flex-direction: column;
   }
   
   .btn {
@@ -89,29 +90,32 @@
 
   }
   
-  .btn-login:hover {
+  /* .btn-login:hover {
     background: linear-gradient(to right, #F66918,#DE3129)  !important;
     border-color: #DE2F2A !important;
 
+} */
+  
+.btn-signup {
+  border-radius: 50px !important;
+  font-family: 'Helvetica Neue', sans-serif !important;
+  background: #fff  !important;
+  color: #000000 !important; 
+  border-color: #DE2F2A !important;
+  padding: 10px 60px !important;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; /* Centers the button horizontally */
 }
+
   
-  .btn-signup {
-    border-radius: 50px !important;
-    font-family: 'Helvetica Neue', sans-serif !important;
-    background:linear-gradient(to bottom, #F66918,#DE3129)  !important;
-    color: #fff !important; 
-    border-color: #DE2F2A !important;
-    padding-left: 60px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
-    padding-right: 60px !important;
-  }
-  
-  .btn-signup:hover {
+  /* .btn-signup:hover {
     background: transparent !important; 
     border-color: #DE2F2A !important;
 
-  }
+  } */
   
   /* Media Queries for Mobile */
 @media (max-width: 768px) {
