@@ -5,11 +5,11 @@ const Prefooter: React.FC = () => {
   return (
     <section className="prefooter">
       <div className="prefooter-content">
-        <h1><span className="gray1gradiant">120 minutes of</span><span className="orangegradiant"> free clipping</span><span className='gray2gradiant'> every month</span></h1>
-        <p>Create an account or talk to one of our experts.</p>
+        <h1><span style={{color: '#fff'}} className="gray1gradiant">120 minutes of free clipping every month</span></h1>
+        <p style={{color: '#fff'}}>Create an account or talk to one of our experts.</p>
         <div className="prefooter-buttons">
-          <a href="#login" className="btn btn-login">LOGIN</a>
-          <a href="#signup" className="btn btn-signup">SIGNUP</a>
+          <a href="#signup" className="btn btn-signup">Get Started</a>
+          <a href="#login" className="btn btn-login">Talk to our expert</a>
         </div>
       </div>
     </section>
