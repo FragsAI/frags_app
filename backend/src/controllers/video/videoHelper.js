@@ -1,4 +1,5 @@
-import createSupabase from '../../config/supabase.js';
+import createSupabase from '../../config/supabase.js'; 
+import { createSupabaseClientWithUUID } from '../../config/supabaseToken.js';
 import logger from '../../utils/logger.js';
 import config from '../../utils/config.js';
 
@@ -8,30 +9,48 @@ export const uploadVideoToSupabase = async (user, videoFile, sessionId) => {
     throw new Error("No video file provided.");
   }
 
-  const storagePath = `${user.id}/${videoFile.originalname.replace(/\s+/g, '_')}`;
+  const clerkSupabase = await createSupabase(sessionId);
+
+  const { data: userData, error: userError } = await clerkSupabase
+    .from("users")
+    .select("id")
+    .eq("clerk_user_id", user.id)
+    .single();
+
+  if (userError || !userData) {
+    logger.error("User UUID lookup failed:", userError?.message);
+    throw new Error("User not found in database.");
+  }
+
+  const userUUID = userData.id;
+  logger.info("Mapped Clerk ID to Supabase UUID:", userUUID);
+
+  // const supabaseWithUUID = createSupabaseClientWithUUID(userUUID);
+
+  const storagePath = `${userUUID}/${videoFile.originalname.replace(/\s+/g, '_')}`;
   logger.info("Generated Storage Path:", storagePath);
 
-  const supabase = await createSupabase(sessionId);
-  const { data: uploadData, error: uploadError } = await supabase.storage
+  const { data: uploadData, error: uploadError } = await clerkSupabase.storage
     .from("video_storage")
     .upload(storagePath, videoFile.buffer, {
       cacheControl: "3600",
       upsert: true,
-      contentType: videoFile.mimetype,
+      contentType: videoFile.mimetype
     });
 
   if (uploadError) {
     logger.error("Supabase Upload Error:", uploadError.message);
     throw new Error("Failed to upload video to storage.");
   }
-  
+
   logger.info("Video uploaded to storage:", uploadData);
+
   const videoUrl = `${config.DB_URI}/storage/v1/object/public/video_storage/${storagePath}`;
   logger.info("Generated Video URL:", videoUrl);
 
-  const { error: dbError } = await supabase
+  const { error: dbError } = await clerkSupabase
     .from("videos")
-    .insert([{ clerk_user_id: user.id, url: videoUrl }]);
+    .insert([{ id: userUUID, url: videoUrl }]);
 
   if (dbError) {
     logger.error("Database Insert Error:", dbError.message);
@@ -42,11 +61,28 @@ export const uploadVideoToSupabase = async (user, videoFile, sessionId) => {
 };
 
 export const fetchUserVideos = async (user, sessionId) => {
-  const supabase = await createSupabase(sessionId);
-  const { data: videos, error } = await supabase
+  const clerkSupabase = await createSupabase(sessionId);
+
+  const { data: userData, error: userError } = await clerkSupabase
+    .from("users")
+    .select("id")
+    .eq("clerk_user_id", user.id)
+    .single();
+
+  if (userError || !userData) {
+    logger.error("User UUID lookup failed:", userError?.message);
+    throw new Error("User not found in database.");
+  }
+
+  const userUUID = userData.id;
+  logger.info("Mapped Clerk ID to Supabase UUID:", userUUID);
+
+  // const supabaseWithUUID = createSupabaseClientWithUUID(userUUID);
+
+  const { data: videos, error } = await clerkSupabase
     .from("videos")
     .select("*")
-    .eq("clerk_user_id", user.id)
+    .eq("id", userUUID)
     .order("created_at", { ascending: false });
 
   if (error) {
@@ -54,11 +90,11 @@ export const fetchUserVideos = async (user, sessionId) => {
     throw new Error("Failed to fetch videos.");
   }
 
-  if (videos.length === 0) {
-    console.warn("No videos found for user:", user.id);
-  } else {
-    logger.info("Fetched Videos:", videos);
+  if (!videos || videos.length === 0) {
+    logger.warn("No videos found for user:", userUUID);
+    return [];
   }
 
+  logger.info("Fetched Videos:", videos);
   return videos;
 };

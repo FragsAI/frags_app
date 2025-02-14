@@ -5,6 +5,7 @@ import subscriptionRouter from './controllers/stripe/subscription';
 import userManagementRouter from './controllers/user/userManagement';
 import { clerkMiddleware } from '@clerk/express';
 import videoRouter from './controllers/video/videosController';
+import { PrismaClient } from '@prisma/client';
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.use('/api/video', videoRouter)
 
 app.get('/', async (req, res) => {
     res.send('Hello World');
+    const prisma = new PrismaClient()
+    
 });
 
 // Handle unknown endpoints

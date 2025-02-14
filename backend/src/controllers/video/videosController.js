@@ -12,7 +12,11 @@ videoRouter.use(requireAuth());
 videoRouter.post('/', upload.single('file'), async (request, response) => {
   try {
     const user = await clerkClient.users.getUser(request.auth.userId);
-    const videoUrl = await uploadVideoToSupabase(user, request.file, request.auth.sessionId);
+    const videoUrl = await uploadVideoToSupabase(
+      user,
+      request.file,
+      request.auth.sessionId
+    );
     response.status(200).json({ message: "Video uploaded successfully!", url: videoUrl });
   } catch (error) {
     logger.error("Error in video upload:", error.message);
