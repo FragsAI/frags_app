@@ -3,17 +3,11 @@ import { SignUp } from '@clerk/clerk-react';
 import { useLocation } from 'react-router-dom'
 import Header from "../Base/Header";
 import Footer from "../Base/Footer"
+import appearance from '@/clerkStyles';
 
 const SignUpPage: React.FC = () => {
   const location = useLocation()
   const from = location.state?.from.pathname || '/'
-
-//   <SignUp 
-//   routing="path" 
-//   path="/signup"
-//   signInUrl="/login"
-//   fallbackRedirectUrl={from}
-// />
 
 
   return (
@@ -21,12 +15,7 @@ const SignUpPage: React.FC = () => {
       <Header />
       <div className="flex justify-center items-center h-screen">
       <SignUp 
-        appearance={{
-          elements: {
-            rootBox: "bg-[#1A1A1C]",
-            footer: "bg-[#1A1A1C]",
-          },
-        }}
+        appearance={appearance}
         routing="path" 
         path="/signup"
         signInUrl="/login"
