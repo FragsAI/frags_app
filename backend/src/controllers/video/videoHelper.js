@@ -1,4 +1,3 @@
-import createSupabase from '../../config/supabase.js';
 import { S3Client, PutObjectCommand, ListObjectsV2Command } from "@aws-sdk/client-s3";
 import logger from '../../utils/logger.js';
 import config from '../../utils/config.js';
