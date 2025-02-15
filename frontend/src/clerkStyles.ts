@@ -6,7 +6,7 @@ export const appearance = {
       },
       elements: {
         headerTitle: "text-3xl",
-        cardBox: "w-[800px] h-[700px]", 
+        cardBox: "w-[800px]", 
         headerSubtitle: "text-sm",
         socialButtons: "bg-[#131314] rounded-full hover:bg-[#262629] transition-colors duration-500 ease-in-out",
         socialButtonsBlockButtonText: "text-[#A0A0AB] text-lg",
