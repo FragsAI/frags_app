@@ -9,6 +9,7 @@ import Icons from "@/components/icons"
 import { SiteHeader } from '../ui/blocks/site-header';
 import { AppSidebar } from '../ui/blocks/app-sidebar';
 import { User } from 'lucide-react';
+import { useNavigate, Navigate } from 'react-router-dom';
 import appearance from '@/clerkStyles';
 
 interface Video {
@@ -20,6 +21,7 @@ const Dashboard: React.FC = ({children}: {children: React.ReactNode}) => {
   const { getToken } = useAuth();
   const [file, setFile] = useState<File | null>(null);
   const [videos, setVideos] = useState<Video[]>([]);
+  const navigate = useNavigate();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFile(e.target.files[0]);
@@ -67,12 +69,6 @@ const Dashboard: React.FC = ({children}: {children: React.ReactNode}) => {
   //   }
   // }, [isLoaded, isSignedIn, user]);
 
-  interface UserProfileLinkProps {
-    children?: React.ReactNode,
-    path: string,
-    className?: string
-  }
-
   return (
     <div className="mb-4 text-white h-screen w-full flex items-center justify-center">
       <ProtectedRoute>
@@ -92,14 +88,33 @@ const Dashboard: React.FC = ({children}: {children: React.ReactNode}) => {
             }
           }}
         >
-           <div> This some testing</div>
+          <UserProfile.Page label="Settings" url="/settings" labelIcon={<Icons.Settings size={16}/>} >
+            <div>
+              <input type="file" onChange={handleFileChange} />
+              <button onClick={handleUpload}>Upload Video</button>
+              <ul>
+                {videos.map((video) => (
+                  <li key={video.id}>
+                    <a href={video.url} target="_blank" rel="noopener noreferrer">
+                      {video.url}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </UserProfile.Page>
+          <UserProfile.Link label="Home" url="/" labelIcon={<Icons.Home size={16}/>} />
+          <UserProfile.Link label="Dashboard" url="/dashboard" labelIcon={<Icons.LayoutDashboard size={16}/>} /> 
+          <UserProfile.Link label="Logout" url="/logout" labelIcon={<Icons.LogOut size={16}/>} />
         </UserProfile>
+
+
       </ProtectedRoute>
     </div>
   );
 }
 
-  {/* <div className="[--header-height:calc(theme(spacing.14))]">
+          {/* <div className="[--header-height:calc(theme(spacing.14))]">
     <SidebarProvider className="flex flex-col">
       <SiteHeader />
       <div className="flex flex-1">

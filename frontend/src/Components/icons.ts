@@ -1,4 +1,4 @@
-import { AlignJustify, Calendar, Home, Inbox, Search, Settings, X, ArrowLeftToLine, ChevronDown, Link, DotIcon, Check } from "lucide-react";
+import { AlignJustify, Calendar, Home, Inbox, Search, Settings, X, ArrowLeftToLine, ChevronDown, Link, DotIcon, Check, LayoutDashboard, House, LogOut } from "lucide-react";
 
 const Icons = {
     AlignJustify,
@@ -12,7 +12,10 @@ const Icons = {
     ArrowLeftToLine,
     ChevronDown,
     Link,
-    DotIcon
+    DotIcon,
+    LayoutDashboard,
+    House,
+    LogOut
 }
 
 export default Icons
