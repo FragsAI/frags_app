@@ -2,6 +2,9 @@
 import responseTime from "response-time"
 import logger from "./logger.js"
 import chalk from "chalk"
+import { PrismaClient } from "@prisma/client"
+
+const prisma = new PrismaClient()
 
 function getStatusColor(statusCode) {
   if (statusCode >= 200 && statusCode < 300) {

@@ -21,20 +21,21 @@ const imageUrls: string[] = [
 
 const Testimonials: React.FC = () => {
   return (
-    <div className="testimonials">
-      <h2 className="testimonials-header">See why so many creators <span className="orangegradiant">love Frags</span></h2>
-      <div className="testimonials-container">
-        {Array.from({ length: 4 }).map((_, colIndex) => (
-          <div key={colIndex} className="testimonial-column">
-            {imageUrls.slice(colIndex * 3, colIndex * 3 + 3).map((url, imgIndex) => (
-              <div key={imgIndex} className="testimonial-image-wrapper">
-                <img src={url} alt={`Testimonial ${colIndex}-${imgIndex}`} className="testimonial-image" />
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
+    // <div className="testimonials">
+    //   <h2 className="testimonials-header">See why so many creators <span className="orangegradiant">love Frags</span></h2>
+    //   <div className="testimonials-container">
+    //     {Array.from({ length: 4 }).map((_, colIndex) => (
+    //       <div key={colIndex} className="testimonial-column">
+    //         {imageUrls.slice(colIndex * 3, colIndex * 3 + 3).map((url, imgIndex) => (
+    //           <div key={imgIndex} className="testimonial-image-wrapper">
+    //             <img src={url} alt={`Testimonial ${colIndex}-${imgIndex}`} className="testimonial-image" />
+    //           </div>
+    //         ))}
+    //       </div>
+    //     ))}
+    //   </div>
+    // </div>
+    <div></div>
   );
 };
 

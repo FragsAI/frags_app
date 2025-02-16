@@ -8,8 +8,6 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useClerk, useUser } from "@clerk/clerk-react";
 import MobileMenu from "./MobileMenu";
 
-// STILL WORK IN PROGRESS
-
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "Alert Dialog",
@@ -114,7 +112,7 @@ const Header: React.FC = () => {
               <>
                 <button onClick={handleSignIn} className="hidden md:block text-md font-bold self-center hover:text-gray-300 transition duration-300 ease-in-out">Login</button>
                 <Link to="/signup" className="bg-white text-md text-black rounded-3xl px-4 py-1 hover:bg-gray-300 transition duration-300 ease-in-out">
-                  Get Started Free
+                  Free Sign Up
                 </Link>
               </>
             )}

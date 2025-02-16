@@ -1,9 +1,9 @@
 import React from 'react';
 import { SignIn } from '@clerk/clerk-react';
 import { useLocation } from 'react-router-dom'
-import "../../Styles/AuthenticationStyles/LoginStyles.css";
 import Header from "../Base/Header";
 import Footer from "../Base/Footer"
+import appearance from '@/clerkStyles';
 
 const SignInPage: React.FC = () => {
   const location = useLocation()
@@ -12,26 +12,9 @@ const SignInPage: React.FC = () => {
   return (
     <>
       <Header />
-      <div className="swirl-container">
-            <div className="move-swirl">
-                <img src="../assets/Swirl.png"/>
-            </div>
-      </div>
-       <div className="cube-content">
-            <div className="move-cube1">
-                <img id="cubeone" src="assets/cubeone.png"/>
-            </div>
-
-            <div className="move-cube2">
-                <img id="cubetwo" src="assets/cubetwo.png"/>
-            </div>
-
-            <div className="move-cube3">
-                <img id="cubethree" src="/assets/cubethree.png"/>
-            </div>
-      </div>
-      <div className="move-signIn">
+      <div className="flex justify-center items-center h-screen">
           <SignIn 
+            appearance={appearance}
              routing="path"
              path="/login"
              signUpUrl="/signup"
