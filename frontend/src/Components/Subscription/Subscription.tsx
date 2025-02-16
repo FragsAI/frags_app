@@ -40,7 +40,7 @@ const Subscription: React.FC = () => {
       }
     }
 
-    if (isLoading) {
+    if (true) {
       return <LoadingScreen />
     }
 

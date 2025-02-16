@@ -2,7 +2,7 @@ import React from 'react';
 import { SignUp } from '@clerk/clerk-react';
 import { useLocation } from 'react-router-dom'
 import Header from "../Base/Header";
-import Footer from "../Base/Footer"
+import Footer from "../Base/Footer";
 import appearance from '@/clerkStyles';
 
 const SignUpPage: React.FC = () => {

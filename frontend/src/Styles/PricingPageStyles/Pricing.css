@@ -1,4 +1,3 @@
-/* Pricing.css */
 
 .pricing-container {
     margin-top: 100px;
@@ -53,6 +52,7 @@
     background-color: #232427;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
+
   .pricing-card:hover {
     transform: scale(1.05); /* Slightly enlarge the card */
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Add a more prominent shadow */
@@ -239,4 +239,5 @@
     background-color: #52FFF3; 
     color: #232427;
   }
- 
+
+  
