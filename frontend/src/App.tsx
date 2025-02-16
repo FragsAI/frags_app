@@ -2,7 +2,7 @@ import React from 'react';
 import LandingPage from './components/LandingPage/LandingPage';
 import Subscription from './components/Subscription/Subscription';
 import Product from './components/ProductPage/Product';
-import Dashboard from "./components/Dashboard/Dashboard";
+import Profile from './components/Profile/Profile';
 import Pricing from './components/PricingPage/Pricing';
 import YearlyPrice from './components/PricingPage/YearlyPrice'; // Import the YearlyPrice component
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -90,7 +90,7 @@ const App = () => {
                 <Router>
                     <ScrollToTop>
                     <Routes>
-                        <Route path="/dashboard" element={<Dashboard/>}/>
+                        <Route path="/profile" element={<Profile/>}/>
                         <Route path="/subscription" element={<Subscription/>}/>
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<SignUp />} />

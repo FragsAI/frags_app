@@ -1,6 +1,6 @@
 import React from 'react'
 import { UserButton, UserProfile } from '@clerk/clerk-react';
-import * as DashboardService from './DashboardService'
+import * as ProfileService from './ProfileService'
 import { useState, useEffect } from 'react'
 import { useAuth } from '@clerk/clerk-react'
 import ProtectedRoute from '../Authentication/ProtectedRoute';
@@ -35,7 +35,7 @@ const Dashboard: React.FC = ({children}: {children: React.ReactNode}) => {
       }
 
       const token = await getToken()
-      const data = await DashboardService.uploadVideo(file, token)
+      const data = await ProfileService.uploadVideo(file, token)
 
       alert(data.message || "Upload successful!");
       setFile(null);
@@ -48,14 +48,14 @@ const Dashboard: React.FC = ({children}: {children: React.ReactNode}) => {
 
   const fetchVideos = async () => {
     const token = await getToken()
-    const response = await DashboardService.fetchVideos(token)
+    const response = await ProfileService.fetchVideos(token)
     setVideos(response.videos || [])
   };
 
   const fetchUserData = async () => {
     try {
       const token = await getToken()
-      const data = await DashboardService.getUserData(token)
+      const data = await ProfileService.getUserData(token)
       console.log("User data:", data);
     } catch (error) {
       console.error("Error fetching user data:", error);
