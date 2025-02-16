@@ -1,12 +1,15 @@
 import React from 'react'
-import { UserButton } from '@clerk/clerk-react';
+import { UserButton, UserProfile } from '@clerk/clerk-react';
 import * as DashboardService from './DashboardService'
 import { useState, useEffect } from 'react'
 import { useAuth } from '@clerk/clerk-react'
 import ProtectedRoute from '../Authentication/ProtectedRoute';
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import Icons from "@/components/icons"
 import { SiteHeader } from '../ui/blocks/site-header';
 import { AppSidebar } from '../ui/blocks/app-sidebar';
+import { User } from 'lucide-react';
+import appearance from '@/clerkStyles';
 
 interface Video {
   id: string,
@@ -64,52 +67,55 @@ const Dashboard: React.FC = ({children}: {children: React.ReactNode}) => {
   //   }
   // }, [isLoaded, isSignedIn, user]);
 
+  interface UserProfileLinkProps {
+    children?: React.ReactNode,
+    path: string,
+    className?: string
+  }
+
   return (
-    <div className="mb-4 text-white">
+    <div className="mb-4 text-white h-screen w-full flex items-center justify-center">
       <ProtectedRoute>
-        {/* <UserButton />
-      <div>
-        <h2>Upload a Video</h2>
-        <input
-          type="file"
-          accept="video/mp4, video/quicktime"
-          onChange={handleFileChange}
-        />
-        <button onClick={handleUpload}>Upload</button>
-      </div>
-      <div>
-        <h2>Your Uploaded Videos</h2>
-        {videos.length === 0 ? (
-          <p>No videos found.</p>
-        ) : (
-          videos.map((video) => (
-            <div key={video.id} style={{ marginBottom: "1rem" }}>
-              <video src={video.url} controls width="320" height="240" />
-            </div>
-          ))
-        )}
-      </div> */}
-        <div className="[--header-height:calc(theme(spacing.14))]">
-          <SidebarProvider className="flex flex-col">
-            <SiteHeader />
-            <div className="flex flex-1">
-              <AppSidebar />
-              <SidebarInset>
-                <div className="flex flex-1 flex-col gap-4 p-4">
-                  <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                    <div className="aspect-video rounded-xl bg-muted/50" />
-                    <div className="aspect-video rounded-xl bg-muted/50" />
-                    <div className="aspect-video rounded-xl bg-muted/50" />
-                  </div>
-                  <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
-                </div>
-              </SidebarInset>
-            </div>
-          </SidebarProvider>
-        </div>
+        <UserProfile 
+          appearance={{
+            ...appearance,
+            elements: {
+              cardBox: "w-screen h-screen",
+              navbarButton: "text-white",
+              headerTitle: "text-3xl",
+              profileSection: "bg-[#2E2E30] px-4 py-6 border-y-1 border-[#1A1A1C]",
+              profileSectionPrimaryButton: "text-white hover:text-[#00D4CA]",
+              profileSectionTitleText: "font-bold text-base",
+              badge: "bg-[#00D4CA] text-black",
+              avatarImageActionsUpload: "text-white",
+              formButtonReset: "text-red-500",
+            }
+          }}
+        >
+           <div> This some testing</div>
+        </UserProfile>
       </ProtectedRoute>
     </div>
   );
 }
+
+  {/* <div className="[--header-height:calc(theme(spacing.14))]">
+    <SidebarProvider className="flex flex-col">
+      <SiteHeader />
+      <div className="flex flex-1">
+        <AppSidebar />
+        <SidebarInset>
+          <div className="flex flex-1 flex-col gap-4 p-4">
+            <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+              <div className="aspect-video rounded-xl bg-muted/50" />
+              <div className="aspect-video rounded-xl bg-muted/50" />
+              <div className="aspect-video rounded-xl bg-muted/50" />
+            </div>
+            <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
+          </div>
+        </SidebarInset>
+      </div>
+    </SidebarProvider>
+  </div> */}
 
 export default Dashboard;
