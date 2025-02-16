@@ -1,4 +1,3 @@
-import './App.css';
 import React, { useRef, } from "react";
 import Home from "./components/LandingPage/Home";
 import Features from './components/LandingPage/Features';
