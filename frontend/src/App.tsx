@@ -1,7 +1,6 @@
 import React from 'react';
 import LandingPage from './components/LandingPage/LandingPage';
 import Subscription from './components/Subscription/Subscription';
-import Product from './components/ProductPage/Product';
 import Profile from './components/Profile/Profile';
 import Pricing from './components/PricingPage/Pricing';
 import YearlyPrice from './components/PricingPage/YearlyPrice'; // Import the YearlyPrice component
@@ -96,7 +95,6 @@ const App = () => {
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/signout" element={<SignOut />} />
                         <Route path="/" element={<LandingPage />} />
-                        <Route path="/product" element={<Product />} />
                         <Route path="/pricing" element={<Pricing />} />
                         <Route path="/yearlyprice" element={<YearlyPrice />} /> {/* Add the route for YearlyPrice */}
                     </Routes>

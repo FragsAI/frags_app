@@ -52,16 +52,6 @@ const Dashboard: React.FC = ({children}: {children: React.ReactNode}) => {
     setVideos(response.videos || [])
   };
 
-  const fetchUserData = async () => {
-    try {
-      const token = await getToken()
-      const data = await ProfileService.getUserData(token)
-      console.log("User data:", data);
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-    }
-  };
-
   // useEffect(() => {
   //   if (isLoaded && isSignedIn && user) {
   //     fetchUserData();
