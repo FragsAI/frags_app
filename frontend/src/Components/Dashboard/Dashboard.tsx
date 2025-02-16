@@ -105,7 +105,7 @@ const Dashboard: React.FC = ({children}: {children: React.ReactNode}) => {
           </UserProfile.Page>
           <UserProfile.Link label="Home" url="/" labelIcon={<Icons.Home size={16}/>} />
           <UserProfile.Link label="Dashboard" url="/dashboard" labelIcon={<Icons.LayoutDashboard size={16}/>} /> 
-          <UserProfile.Link label="Logout" url="/logout" labelIcon={<Icons.LogOut size={16}/>} />
+          <UserProfile.Link label="Logout" url="/signout" labelIcon={<Icons.LogOut size={16}/>} />
         </UserProfile>
 
 

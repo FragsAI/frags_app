@@ -13,7 +13,7 @@ const SignUpPage: React.FC = () => {
   return (
     <>
       <Header />
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center h-screen mt-32 mb-16">
       <SignUp 
         appearance={appearance}
         routing="path" 

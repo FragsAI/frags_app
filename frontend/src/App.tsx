@@ -11,7 +11,10 @@ import SignUp from "./components/Authentication/SignUp";
 import { ClerkProvider } from '@clerk/clerk-react';
 import ScrollToTop from './components/Accessories/ScrollToLocation';
 import SignOut from './components/Authentication/SignOut';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+// Create a client
+const queryClient = new QueryClient();
 
 // Access environment variable
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -75,31 +78,33 @@ const App = () => {
       }
 
     return (
-        <React.StrictMode>
-            <ClerkProvider 
-            publishableKey={PUBLISHABLE_KEY} 
-            afterSignOutUrl="/" 
-            signInUrl={SIGNIN_URL}
-            signUpUrl={SIGNUP_URL}
-            localization={localization}
-            >
-            <Router>
-                <ScrollToTop>
-                <Routes>
-                    <Route path="/dashboard" element={<Dashboard/>}/>
-                    <Route path="/subscription" element={<Subscription/>}/>
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<SignUp />} />
-                    <Route path="/signout" element={<SignOut />} />
-                    <Route path="/" element={<LandingPage />} />
-                    <Route path="/product" element={<Product />} />
-                    <Route path="/pricing" element={<Pricing />} />
-                    <Route path="/yearlyprice" element={<YearlyPrice />} /> {/* Add the route for YearlyPrice */}
-                </Routes>
-                </ScrollToTop>
-            </Router>
-            </ClerkProvider>
-        </React.StrictMode>
+        <QueryClientProvider client={queryClient}>
+            <React.StrictMode>
+                <ClerkProvider 
+                publishableKey={PUBLISHABLE_KEY} 
+                afterSignOutUrl="/" 
+                signInUrl={SIGNIN_URL}
+                signUpUrl={SIGNUP_URL}
+                localization={localization}
+                >
+                <Router>
+                    <ScrollToTop>
+                    <Routes>
+                        <Route path="/dashboard" element={<Dashboard/>}/>
+                        <Route path="/subscription" element={<Subscription/>}/>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/signup" element={<SignUp />} />
+                        <Route path="/signout" element={<SignOut />} />
+                        <Route path="/" element={<LandingPage />} />
+                        <Route path="/product" element={<Product />} />
+                        <Route path="/pricing" element={<Pricing />} />
+                        <Route path="/yearlyprice" element={<YearlyPrice />} /> {/* Add the route for YearlyPrice */}
+                    </Routes>
+                    </ScrollToTop>
+                </Router>
+                </ClerkProvider>
+            </React.StrictMode>
+        </QueryClientProvider>
     )
 }
 
