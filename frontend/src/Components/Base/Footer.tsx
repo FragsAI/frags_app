@@ -16,7 +16,7 @@ const socialIcons = [
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear()
   return (
-    <footer className="text-white bg-[#0f0f0f] pt-20 pb-8 px-32">
+    <footer className="text-white bg-[#0f0f0f] pt-20 pb-8 px-8 lg:px-32">
       {/* <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
         <div className="flex flex-col gap-4">
           <div className="font-bold text-xl">COMPANY</div>
@@ -77,12 +77,11 @@ const Footer: React.FC = () => {
             ))}
         </div>
       </div> */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-16 lg:gap-64">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-16">
         <div className="flex flex-col gap-8">
           <div className="flex font-bold text-4xl">Frags</div>
           <div className="text-[#A0AABA]">Free all-in-one video editor for everyone to create anything anywhere. Contact us at: support@frags.com</div>
           <LanguageDropdown />
-
         </div>
         <div className="flex flex-col gap-8">
           <div className="flex font-bold text-lg">Product</div>
@@ -100,6 +99,7 @@ const Footer: React.FC = () => {
             <div>Customer stories</div>
             <div>Blogs</div>
             <div>Frags media assets</div>
+            <div>Creator Terms of Service</div>
           </div>
         </div>
         <div className="flex flex-col gap-8">
@@ -109,6 +109,17 @@ const Footer: React.FC = () => {
             <div>Help Center</div>
             <div>Customer Support</div>
             <div>2025 Ultimate Guide</div>
+          </div>
+        </div>
+        <div className="flex flex-col gap-8">
+          <div className="flex font-bold text-lg">Legal and Regulation</div>
+          <div className="text-[#A0AABA] flex flex-col gap-2">
+            <div>Terms of Service</div>
+            <div>Privacy Center</div>
+            <div>Privacy Policy</div>
+            <div>Cookies Policy</div>
+            <div>License Agreement</div>
+            <div>Community Guidelines</div>
           </div>
         </div>
       </div>
@@ -126,7 +137,7 @@ const Footer: React.FC = () => {
           ))}
         </div>
       </div>
-      <div className='text-[#A0AABA] mt-32 flex gap-4 flex-wrap justify-between'>
+      {/* <div className='text-[#A0AABA] mt-32 flex gap-4 flex-wrap justify-between'>
         <div>Terms of Service</div>
         <div>Prviacy Center</div>
         <div>Privacy Policy</div>
@@ -134,7 +145,7 @@ const Footer: React.FC = () => {
         <div>License Agreement</div>
         <div>Creator Terms of Service</div>
         <div>Community Guidelines</div>
-      </div>
+      </div> */}
       
     </footer>
   )

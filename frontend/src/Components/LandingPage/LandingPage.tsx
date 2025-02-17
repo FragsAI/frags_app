@@ -30,7 +30,7 @@ const LandingPage: React.FC = () => {
     <>
       <Header/>
       <Home />
-      <Credentials/>
+      {/* <Credentials/> */}
       <Getstarted/>
       <Features/>
       <Testimonials/>
