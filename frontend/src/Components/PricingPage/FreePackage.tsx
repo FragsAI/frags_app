@@ -1,5 +1,6 @@
 import React from "react";
 import { Check } from 'lucide-react';
+
 interface FreePackageProps {
   isYearly: boolean; // Prop to determine the billing cycle
 }
