@@ -9,7 +9,7 @@ const Home: React.FC = () => {
                 <div className="text-[#00D4CA]">#1 AI Gaming Clipping Tool</div>
                 <div className="flex-1 flex self-center font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
                     <div className="text-[#FDFDFD]">Create viral-ready clips</div>
-                    <div className="whitespace-pre text-[#797979]"> 10x faster</div>
+                    <div className="whitespace-pre text-[#FDFDFD]"> 10x faster</div>
                 </div>
                 <div className="text-[#FFFFFF] text-xs md:text-base lg:text-lg px-2">Frags turns long videos into shorts, making content easy, saving you time, and grows your presence</div>
             </div>
