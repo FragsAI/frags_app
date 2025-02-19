@@ -1,15 +1,19 @@
 {
-  "extends": "./tsconfig.app.json",
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    }
-  ],
   "compilerOptions": {
-    "baseUrl": ".",
+    "outDir": "./build/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "jsx":"react",
+    "types": ["vite/client"],
+    "module": "ESNext",
+    "target":"ESNext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
     }
-  }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

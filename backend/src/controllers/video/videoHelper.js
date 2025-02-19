@@ -1,50 +1,101 @@
-import { S3Client, PutObjectCommand, ListObjectsV2Command,
-GetObjectCommand, DeleteObjectCommand} from "@aws-sdk/client-s3";
+import createSupabase from '../../config/supabase.js'; 
+import { createSupabaseClientWithUUID } from '../../config/supabaseToken.js';
 import logger from '../../utils/logger.js';
 import config from '../../utils/config.js';
 
-const s3 = new S3Client({
-  region: config.S3_REGION,
-  credentials: {
-    accessKeyId: config.S3_ACCESS,
-    secretAccessKey: config.S3_SECRET
-  }
-})
-
-export const uploadVideo = async (user, videoFile) => {
+export const uploadVideoToSupabase = async (user, videoFile, sessionId) => {
   if (!videoFile) {
     logger.error("Video file is missing in the request");
     throw new Error("No video file provided.");
   }
-  const baseKey = `${user.id}/uploads/${videoFile.originalname.replace(" ", "_")}`; // Use the Clerk user ID as the base key - Direct to upload folder - Go to the original name of the video file
 
-  const params = {
-    Bucket: config.S3_BUCKET,
-    Key: baseKey,
-    Body: videoFile.buffer,
-    ContentType: videoFile.mimetype,
-    CacheControl: "3600"
+  const clerkSupabase = await createSupabase(sessionId);
+
+  const { data: userData, error: userError } = await clerkSupabase
+    .from("users")
+    .select("id")
+    .eq("clerk_user_id", user.id)
+    .single();
+
+  if (userError || !userData) {
+    logger.error("User UUID lookup failed:", userError?.message);
+    throw new Error("User not found in database.");
   }
 
-  const command = new PutObjectCommand(params)
+  const userUUID = userData.id;
+  logger.info("Mapped Clerk ID to Supabase UUID:", userUUID);
 
-  await s3.send(command)
+  const supabaseWithUUID = createSupabaseClientWithUUID(userUUID);
 
-  const videoUrl = `https://${config.S3_BUCKET}.s3.${config.S3_REGION}.amazonaws.com/${baseKey}`;
-  return videoUrl
+  const storagePath = `${userUUID}/${videoFile.originalname.replace(/\s+/g, '_')}`;
+  logger.info("Generated Storage Path:", storagePath);
 
+  const { data: uploadData, error: uploadError } = await supabaseWithUUID.storage
+    .from("video_storage")
+    .upload(storagePath, videoFile.buffer, {
+      cacheControl: "3600",
+      upsert: true,
+      contentType: videoFile.mimetype
+    });
+
+  if (uploadError) {
+    logger.error("Supabase Upload Error:", uploadError.message);
+    throw new Error("Failed to upload video to storage.");
+  }
+
+  logger.info("Video uploaded to storage:", uploadData);
+
+  const videoUrl = `${config.DB_URI}/storage/v1/object/public/video_storage/${storagePath}`;
+  logger.info("Generated Video URL:", videoUrl);
+
+  const { error: dbError } = await supabaseWithUUID
+    .from("videos")
+    .insert([{ id: userUUID, url: videoUrl }]);
+
+  if (dbError) {
+    logger.error("Database Insert Error:", dbError.message);
+    throw new Error("Failed to save video metadata.");
+  }
+
+  return videoUrl;
 };
 
-export const fetchVideos = async (user) => {
-  const params = {
-    Bucket: config.S3_BUCKET,
-    Key: `${user.id}/uploads/`, // Use the Clerk user ID as the base key - Direct to upload folder
+export const fetchUserVideos = async (user, sessionId) => {
+  const clerkSupabase = await createSupabase(sessionId);
+
+  const { data: userData, error: userError } = await clerkSupabase
+    .from("users")
+    .select("id")
+    .eq("clerk_user_id", user.id)
+    .single();
+
+  if (userError || !userData) {
+    logger.error("User UUID lookup failed:", userError?.message);
+    throw new Error("User not found in database.");
   }
 
-  const command = new ListObjectsV2Command(params)
+  const userUUID = userData.id;
+  logger.info("Mapped Clerk ID to Supabase UUID:", userUUID);
 
-  const { Contents: videos } = await s3.send(command)
+  const supabaseWithUUID = createSupabaseClientWithUUID(userUUID);
 
+  const { data: videos, error } = await supabaseWithUUID
+    .from("videos")
+    .select("*")
+    .eq("id", userUUID)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    logger.error("Error Fetching Videos:", error.message);
+    throw new Error("Failed to fetch videos.");
+  }
+
+  if (!videos || videos.length === 0) {
+    logger.warn("No videos found for user:", userUUID);
+    return [];
+  }
+
+  logger.info("Fetched Videos:", videos);
   return videos;
 };
 
