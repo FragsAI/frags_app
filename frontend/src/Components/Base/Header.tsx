@@ -1,5 +1,3 @@
-"use client"
-
 import Icons from "@/components/icons"
 import NavBar from "./NavBar"
 import {motion, AnimatePresence} from "framer-motion"
@@ -101,8 +99,8 @@ const Header: React.FC = () => {
           <div className="flex items-center gap-5 text-white">
             {isSignedIn ? (
               <>
-                <Link to="/dashboard" className="text-lg font-bold self-center hover:text-gray-300 transition duration-300 ease-in-out">
-                  Dashboard
+                <Link to="/profile" className="text-lg font-bold self-center hover:text-gray-300 transition duration-300 ease-in-out">
+                  Profile
                 </Link>
                 <button onClick={handleSignOut} className="hidden md:block text-lg font-bold self-center hover:text-gray-300 transition duration-300 ease-in-out">
                   Signout

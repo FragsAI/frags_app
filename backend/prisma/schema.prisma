@@ -23,6 +23,15 @@ model User {
   full_name     String?
 
   subscriptions Subscription?
+  videos Video[]
+}
+
+model Video {
+  id String @id @default(uuid())
+  name String
+  
+  userId String
+  user User @relation(fields: [userId], references: [id])
 }
 
 model Price {
@@ -31,9 +40,9 @@ model Price {
   stripe_id String
   type      String
   interval  String
-  productId String?
+  productId String
 
-  product Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
 model Product {
