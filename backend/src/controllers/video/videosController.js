@@ -1,7 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import { clerkClient, requireAuth } from '@clerk/express';
-import { uploadVideo, fetchVideos, fetchVideo, deleteVideo } from './videoHelper.js';
+import { uploadVideo, getVideo, deleteVideo, getAllVideos } from './videoHelper.js';
 import logger from '../../utils/logger.js';
 
 const videoRouter = express.Router();
@@ -24,7 +24,7 @@ videoRouter.post('/', upload.single('file'), async (request, response) => {
 videoRouter.get("/", async (request, response) => {
   try {
     const user = await clerkClient.users.getUser(request.auth.userId);
-    const videos = await fetchVideos(user);
+    const videos = await getAllVideos(user);
     response.status(200).json({ videos });
   } catch (error) {
     logger.error("Error fetching videos:", error.message);
@@ -35,7 +35,7 @@ videoRouter.get("/", async (request, response) => {
 videoRouter.get("/:name", async (request, response) => {
   try {
     const user = await clerkClient.users.getUser(request.auth.userId);
-    const video = await fetchSpecificVideo(user, request.params.name);
+    const video = await getVideo(user, request.params.name);
     if (!video) {
       return response.status(404).json({ error: "Video not found" });
     }

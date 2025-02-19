@@ -1,5 +1,9 @@
-import { S3Client, PutObjectCommand, ListObjectsV2Command,
-GetObjectCommand, DeleteObjectCommand} from "@aws-sdk/client-s3";
+import { S3Client, 
+  PutObjectCommand, 
+  ListObjectsV2Command,
+  GetObjectCommand, 
+  DeleteObjectCommand
+} from "@aws-sdk/client-s3";
 import logger from '../../utils/logger.js';
 import config from '../../utils/config.js';
 
@@ -16,7 +20,7 @@ export const uploadVideo = async (user, videoFile) => {
     logger.error("Video file is missing in the request");
     throw new Error("No video file provided.");
   }
-  const baseKey = `${user.id}/uploads/${videoFile.originalname.replace(" ", "_")}`; // Use the Clerk user ID as the base key - Direct to upload folder - Go to the original name of the video file
+  const baseKey = `${user.id}/uploads/${videoFile.originalname.replace(/ /g, "_")}`
 
   const params = {
     Bucket: config.S3_BUCKET,
@@ -35,10 +39,11 @@ export const uploadVideo = async (user, videoFile) => {
 
 };
 
-export const fetchVideos = async (user) => {
+export const getAllVideos = async (user) => {
+  
   const params = {
     Bucket: config.S3_BUCKET,
-    Key: `${user.id}/uploads/`, // Use the Clerk user ID as the base key - Direct to upload folder
+    Key: `${user.id}/uploads/`,
   }
 
   const command = new ListObjectsV2Command(params)
@@ -48,15 +53,15 @@ export const fetchVideos = async (user) => {
   return videos;
 };
 
-export const fetchSpecificVideo = async (user, videoName) => {
+export const getVideo = async (user, videoName) => {
   const params = {
     Bucket: config.S3_BUCKET,
     Key: `${user.id}/uploads/${videoName}`
   };
 
   const command = new GetObjectCommand(params);
-  const data = await s3.send(command);
-  return { body: data.Body, contentType: data.ContentType };
+  const {Body, ContentType} = await s3.send(command);
+  return { Body, ContentType };
 };
 
 export const deleteVideo = async (user, videoName) => {
