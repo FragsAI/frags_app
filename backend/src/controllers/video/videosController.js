@@ -1,7 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import { clerkClient, requireAuth } from '@clerk/express';
-import { uploadVideo, fetchVideos } from './videoHelper.js';
+import { uploadVideo, getVideo, deleteVideo, getAllVideos } from './videoHelper.js';
 import logger from '../../utils/logger.js';
 
 const videoRouter = express.Router();
@@ -24,7 +24,7 @@ videoRouter.post('/', upload.single('file'), async (request, response) => {
 videoRouter.get("/", async (request, response) => {
   try {
     const user = await clerkClient.users.getUser(request.auth.userId);
-    const videos = await fetchVideos(user);
+    const videos = await getAllVideos(user);
     response.status(200).json({ videos });
   } catch (error) {
     logger.error("Error fetching videos:", error.message);
@@ -32,13 +32,10 @@ videoRouter.get("/", async (request, response) => {
   }
 });
 
-// Optimize this later, right now it fetches all videos and then filters. Make it so that it only gets one video using the S3 API
-
 videoRouter.get("/:name", async (request, response) => {
   try {
     const user = await clerkClient.users.getUser(request.auth.userId);
-    const videos = await fetchVideos(user);
-    const video = videos.find(video => video.Key === `${user.id}/uploads/${request.params.name}`);
+    const video = await getVideo(user, request.params.name);
     if (!video) {
       return response.status(404).json({ error: "Video not found" });
     }
@@ -47,8 +44,18 @@ videoRouter.get("/:name", async (request, response) => {
     logger.error("Error fetching video:", error.message);
     response.status(500).json({ error: error.message });
   }
-})
+});
 
-// Create a delete route for videos with the same structure as the get and post routes
+videoRouter.delete("/:name", async (request, response) => {
+  try {
+    const user = await clerkClient.users.getUser(request.auth.userId);
+    await deleteVideo(user, request.params.name);
+    logger.info("Video deleted:", video.Key);
+    response.status(200).json({ message: "Video deleted successfully" });
+  } catch (error) {
+    logger.error("Error deleting video:", error.message);
+    response.status(500).json({ error: error.message });
+  }
+});
 
 export default videoRouter;
