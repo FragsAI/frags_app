@@ -1,39 +1,33 @@
 import { clerkClient } from "@clerk/express";
 import createSupabase from "../../config/supabase";
 import logger from "../../utils/logger";
-
+import prisma from "../../config/prisma";
 async function getCurrentUser(auth) {
     try {
-        const supabase = await createSupabase(auth.sessionID)
         const user = await clerkClient.users.getUser(auth.userId);
-        const supabaseAuth = await supabase.auth.getUser()
-        logger.info(supabaseAuth)
+        logger.info(user);
         return user;
     } catch (error) {
-        logger.error("Invalid Clerk Session")
-        return
+        logger.error("Invalid Clerk Session");
+        return;
     }
 }
 
-async function insertUser(sessionId, id, email) {
-    logger.info("Inserting user", id, email);
+async function insertUser(sessionId, id, email, fullName) {
+    logger.info("Inserting user", id, email, fullName);
     try {
-        const supabase = await createSupabase(sessionId)
-        const response = await supabase.from("users").insert([
-            {
+        const user = await prisma.user.create({
+            data: {
                 clerk_user_id: id,
                 email: email,
+                full_name: fullName,
             },
-        ]);
-        if (response.error) { 
-            logger.error(response.error.message)
-            return
-        }
-        logger.info("User created successfully:", response.data);
-        return { data: response.data };
+        });
+        logger.info("User created successfully:", user);
+        return { data: user };
     } catch (error) {
-        logger.error("Invalid user data")
-        return
+        logger.error("Invalid user data:", error);
+        return;
     }
 }
 
@@ -45,10 +39,11 @@ async function CreateUser(req) {
         }
         const id = user.id;
         const email = user.primaryEmailAddress.emailAddress;
-        const data = await insertUser(req.auth.sessionId, id, email);
+        const fullName = `${user.firstName} ${user.lastName}`;
+        const data = await insertUser(req.auth.sessionId, id, email, fullName);
         return data;
     } catch (error) {
-        logger.error("Invalid Session")
+        logger.error("Invalid Session:", error);
     }
 }
 
@@ -56,20 +51,23 @@ async function updateUserData(req) {
     try {
         const user = await getCurrentUser(req.auth);
         const id = user.id;
-        const {firstName, lastName, emailAddresses } = req.body;
+        const { firstName, lastName, emailAddresses } = req.body;
         const { data } = await clerkClient.users.updateUser(id, {
             firstName: firstName || user.firstName,
             lastName: lastName || user.lastName,
             emailAddresses: emailAddresses || user.emailAddresses,
         });
-        const supabase = await createSupabase(req.auth.sessionID)
-        const { error } = await supabase.from("users").update({
-            full_name: `${firstName} ${lastName}`
-        }).eq("clerk_user_id", user.id)
+
+        const updatedUser = await prisma.user.update({
+            where: { clerk_user_id: user.id },
+            data: {
+                full_name: `${firstName} ${lastName}`,
+            },
+        });
+
         return { data };
-    }
-    catch (error) {
-        logger.error(error.message)
+    } catch (error) {
+        logger.error(error.message);
     }
 }
 
@@ -81,7 +79,7 @@ async function GetUserData(userId) {
         }
         return user;
     } catch (error) {
-        logger.error("Failed to fetch data")
+        logger.error("Failed to fetch data:", error);
     }
 }
 
@@ -90,18 +88,18 @@ async function deleteUser(req) {
         const user = await getCurrentUser(req.auth);
         const { data, error } = await clerkClient.users.deleteUser(user.id);
         if (error) {
-            logger.error(error)
-            return
+            logger.error(error);
+            return;
         }
-        const { test } = await supabase.from("users").delete().eq("clerk_user_id", user.id)
-        if (test) {
-            logger.error(test)
-            return
-        }
+        
+        const deletedUser = await prisma.user.delete({
+            where: { clerk_user_id: user.id },
+        });
+
         return { data };
     } catch (error) {
-        logger.error("Failed to delete user")
+        logger.error("Failed to delete user:", error);
     }
 }
 
-export {CreateUser, updateUserData, GetUserData, deleteUser};
+export { CreateUser, updateUserData, GetUserData, deleteUser };
