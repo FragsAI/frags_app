@@ -18,12 +18,6 @@ app.use('/api/user', userManagementRouter);
 app.use('/api/subscription', subscriptionRouter);
 app.use('/api/video', videoRouter)
 
-app.get('/', async (req, res) => {
-    res.send('Hello World');
-    const prisma = new PrismaClient()
-    
-});
-
 // Handle unknown endpoints
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler)
