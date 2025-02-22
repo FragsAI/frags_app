@@ -13,7 +13,7 @@ async function getCurrentUser(auth) {
     }
 }
 
-async function insertUser(sessionId, id, email, fullName) {
+async function insertUser(id, email, fullName) {
     logger.info("Inserting user", id, email, fullName);
     try {
         const user = await prisma.user.create({
@@ -40,7 +40,7 @@ async function CreateUser(req) {
         const id = user.id;
         const email = user.primaryEmailAddress.emailAddress;
         const fullName = `${user.firstName} ${user.lastName}`;
-        const data = await insertUser(req.auth.sessionId, id, email, fullName);
+        const data = await insertUser(id, email, fullName);
         return data;
     } catch (error) {
         logger.error("Invalid Session:", error);
