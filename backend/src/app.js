@@ -5,7 +5,6 @@ import subscriptionRouter from './controllers/stripe/subscription';
 import userManagementRouter from './controllers/user/userManagement';
 import { clerkMiddleware } from '@clerk/express';
 import videoRouter from './controllers/video/videosController';
-import { PrismaClient } from '@prisma/client';
 
 const app = express();
 
